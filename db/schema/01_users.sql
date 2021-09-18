@@ -10,6 +10,7 @@ DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS orders CASCADE;
 DROP TABLE IF EXISTS foods CASCADE;
 DROP TABLE IF EXISTS order_details CASCADE;
+DROP TYPE IF EXISTS ord_status;
 
 CREATE TYPE ord_status AS ENUM ('new', 'accepted', 'declined');
 

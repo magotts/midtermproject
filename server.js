@@ -67,7 +67,24 @@ app.get("/logout", (req, res) => {
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index");
+
+  // get user id from cookies
+  const userId = req.session.user_id;
+
+  console.log({userId});
+
+  // get user from the db
+  const queryText= {
+    text: `SELECT * FROM users WHERE id=$1`,
+    values: [userId]
+  }
+  db.query(queryText)
+  .then((data)=>{
+    console.log(data.rows[0])
+    const templateVars = {user: data.rows[0] };
+    res.render("index", templateVars);
+  })
+  .catch((err)=> console.log({err: err.message }))
 });
 
 app.listen(PORT, () => {

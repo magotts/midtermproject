@@ -6,8 +6,9 @@ module.exports = (db) => {
   router.get("/:id", (req, res) => {
     // set cookie
     req.session.user_id = req.params.id;
-
+    console.log(req.session.user_id);
     // redirect home
+
     res.redirect("/");
   });
 
