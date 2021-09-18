@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
+var cookieSession = require('cookie-session')
 
 // PG database client/connection setup
 const { Pool } = require('pg');
@@ -20,6 +21,12 @@ db.connect();
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
+
+// cookies session
+app.use(cookieSession({
+  name: 'session',
+  keys: ['key1', 'key2']
+}))
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
@@ -49,6 +56,12 @@ app.use("/api/widgets", widgetsRoutes(db));
 // login use
 app.use("/login", loginRoutes(db))
 
+// logout
+app.get("/logout", (req, res) => {
+  req.session = null;
+  // redirect home
+  res.redirect("/");
+});
 
 // Home page
 // Warning: avoid creating more routes in this file!
