@@ -87,6 +87,16 @@ app.get("/", (req, res) => {
   .catch((err)=> console.log({err: err.message }))
 });
 
+
+app.get("/register", (req, res) => {
+  res.render("register");
+});
+
+app.get("/menu", (req, res) => {
+  res.render("menu");
+});
+
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
