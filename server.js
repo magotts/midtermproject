@@ -57,7 +57,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.use("/login", loginRoutes(db))
 
 // logout
-app.get("/logout", (req, res) => {
+app.post("/logout", (req, res) => {
   req.session = null;
   // redirect home
   res.redirect("/");
@@ -80,7 +80,7 @@ app.get("/", (req, res) => {
   }
   db.query(queryText)
   .then((data)=>{
-    console.log(data.rows[0])
+    console.log(data.rows[0], req.session.user_id)
     const templateVars = {user: data.rows[0] };
     res.render("index", templateVars);
   })
@@ -90,6 +90,15 @@ app.get("/", (req, res) => {
 
 app.get("/register", (req, res) => {
   res.render("register");
+});
+
+// Display the login form, but first check if user is logged
+app.get("/login", (req, res) => {
+  if (req.session.user_id) {
+    return res.redirect("/");
+  }
+  const templateVars = { user: null, message: null };
+  res.render("login", templateVars);
 });
 
 app.get("/menu", (req, res) => {
