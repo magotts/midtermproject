@@ -14,7 +14,11 @@
 </header>
 <%- include('partials/_header') %>
 <body>
-
+  <% if (message){ %>
+    <div class="alert <%= messageClass %>" role="alert">
+      <%= message %>
+  </div>
+  <% }%>
   <section class="vh-100 gradient-custom">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
@@ -30,11 +34,11 @@
 
                 <form action="/login" method="POST">
                 <div class="form-outline form-white  mb-4">
-                  <input type="email" id="typeEmailX" name ="email" id="email" placeholder="Email" class="form-control form-control-lg" />
+                  <input type="email" id="typeEmailX" name ="email" id="email" placeholder="Email" class="form-control form-control-lg" required />
                 </div>
 
                 <div class="form-outline form-white mb-4">
-                  <input type="password" id="typePasswordX" id="pass" name="password"  placeholder="Password" class="form-control form-control-lg" />
+                  <input type="password" id="typePasswordX" id="pass" name="password"  placeholder="Password" class="form-control form-control-lg" required />
                 </div>
 
                 <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>

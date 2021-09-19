@@ -5,7 +5,17 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 
 module.exports = (db) => {
-  // ------------ LOGIN FUNCTIONALITY STARTS -----------
+  // -- GET route for login ---
+
+  // Display the login form, but first check if user is logged
+  router.get("/", (req, res) => {
+    if (req.session.user_id) {
+      console.log("templateVar", req.session.user_id);
+      return res.redirect("/");
+    }
+    const templateVars = { user: null, message: null };
+    res.render("login", templateVars);
+  });
 
   // function that gets users using email to be used for log in
   const findUserByEmail = function (email) {
@@ -16,63 +26,81 @@ module.exports = (db) => {
     return db
       .query(queryString, [email.toLowerCase()])
       .then((res) => {
-        console.log(res.rows);
-        res.rows.length > 0 ? res.rows[0] : null;
+        return res.rows.length > 0 ? res.rows[0] : null;
       })
       .catch((err) => {
         console.log(err.message);
       });
   };
+  exports.findUserByEmail = findUserByEmail;
 
   // function that checks password and authenticates user
   const authenticateUser = (email, password) => {
     const user = findUserByEmail(email);
-
-    if (user) {
-      const hashedPassword = password;
-      console.log(hashedPassword, password);
-      if (password === hashedPassword) {
-        console.log(user);
-        return user.id;
+    return findUserByEmail(email).then((user) => {
+      if(!user){
+        return null;
       }
-    }
-    return false;
+      console.log("finduserby email:", user, email, password);
+      if (bcrypt.compareSync(password, user.password)) {
+        return user;
+      }
+      return null;
+    });
   };
 
+  exports.authenticateUser = authenticateUser;
+
+  // Post request that authenticates and redirects to homepage
   router.post("/", (req, res) => {
     const user_id = req.session.user_id || "";
-    
     const { email, password } = req.body;
-    if (user_id) {
-      res.redirect("/");
+
+    // check if email or password exists, if not send alert
+    if (!email || !password) {
+      res.status(403);
+      const vals = {
+        message: "Please enter an email and a password",
+        messageClass: "alert-danger",
+        user: null,
+      };
+
+      res.render("login", vals);
     }
-    const passQuery = {
-      text: `SELECT id, password FROM users WHERE email = $1`,
-      values: [email]
-    };
-    db.query(passQuery)
-        .then(data => {
-          const fetchUser = data.rows[0];
-          console.log(fetchUser);
-          if (bcrypt.compareSync(password, fetchUser.password)) {
-            req.session.user_id = fetchUser.id;
-              res.redirect("/");
-          }
-        })
-        .catch(err => {
-          res.status(500).json({ error: err.message });
-        });
-  });
 
-  // ------------ LOGIN FUNCTIONALITY ENDS -----------
 
-  router.get("/:id", (req, res) => {
-    // set cookie
-    req.session.user_id = req.params.id;
-    console.log(req.session.user_id);
-    // redirect home
+    // start authentication process
+    authenticateUser(email, password)
+      .then((user) => {
+        console.log("Here is User:", user);
 
-    res.redirect("/");
+        // If authenticate user returns null
+        if (!user || req.session.user_id) {
+          res.status(401).render("login", {
+            message: "Your username or password is incorrect",
+            messageClass: "alert-danger",
+            user: null,
+          });
+          return;
+        }
+        req.session.user_id = user.id;
+        if (req.session.user_id) {
+          res.redirect("/");
+        }
+
+        // --- FOR admin ---
+
+        // if (req.session.user_id && user.admin === true ) {
+        //   IMPLEMENT ADMIN FUNCTIONALITY
+        // }
+
+
+        // ---- TO SEND ANY OF THE AUTHENTICATED USER'S INFO ANYWHERE ----
+        // res.send({ user: { name: user.name, email: user.email, id: user.id } });
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
   });
 
   return router;

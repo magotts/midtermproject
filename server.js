@@ -94,17 +94,7 @@ app.get("/register", (req, res) => {
 });
 
 
-// -- GET route for login ---
 
-// Display the login form, but first check if user is logged
-app.get("/login", (req, res) => {
-  if (req.session.user_id) {
-    console.log("templateVar",req.session.user_id);
-    return res.redirect("/");
-  }
-  const templateVars = { user: null, message: null };
-  res.render("login", templateVars);
-});
 
 app.get("/menu", (req, res) => {
   res.render("menu");
