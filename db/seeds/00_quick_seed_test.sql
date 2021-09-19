@@ -5,8 +5,7 @@ INSERT INTO
     last_name,
     phone_number,
     password,
-    email,
-    profile_image_url
+    email
   )
 VALUES
   (
@@ -14,8 +13,7 @@ VALUES
     'Williams',
     '6472212345',
     '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.',
-    'alice.williams@gmail.com',
-    'https://www.kindpng.com/picc/m/21-214439_free-high-quality-person-icon-default-profile-picture.png'
+    'alice.williams@gmail.com'
   );
 
 INSERT INTO
@@ -24,8 +22,7 @@ INSERT INTO
     last_name,
     phone_number,
     password,
-    email,
-    profile_image_url
+    email
   )
 VALUES
   (
@@ -33,8 +30,7 @@ VALUES
     'Adams',
     '4162212345',
     '$2a$10$FB/BOAVhpuLvpOREQVmvmezD4ED/.JBIDRh70tGevYzYzQgFId2u.',
-    'kira.adams@gmail.com',
-    'https://www.kindpng.com/picc/m/21-214439_free-high-quality-person-icon-default-profile-picture.png'
+    'kira.adams@gmail.com'
   );
 
 

@@ -49,6 +49,10 @@ app.use(express.static("public"));
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 
+//admin routes
+const adminRouter = require('./routes/admin-router')
+app.use("/admins", adminRouter(db));
+
 // login routes
 const loginRoutes = require("./routes/login");
 
