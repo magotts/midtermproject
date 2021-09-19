@@ -7,7 +7,8 @@ const bcrypt = require("bcryptjs");
 module.exports = (db) => {
   // -- GET route for login ---
 
-  // Display the login form, but first check if user is logged
+  // Display the login form, but first check if user is logged in.
+  // If they're logged in, redirect to homepage
   router.get("/", (req, res) => {
     if (req.session.user_id) {
       return res.redirect("/");
@@ -16,7 +17,7 @@ module.exports = (db) => {
     res.render("login", templateVars);
   });
 
-  // function that gets users using email to be used for log in
+  // function that gets users using email - to be used to match db and authenticate only
   const findUserByEmail = function (email) {
     const queryString = `
     SELECT * FROM users WHERE users.email = $1
@@ -33,11 +34,11 @@ module.exports = (db) => {
   };
   exports.findUserByEmail = findUserByEmail;
 
-  // function that checks password and authenticates user
+  // function that checks password and authenticates user based on findUserByEmail
   const authenticateUser = (email, password) => {
     const user = findUserByEmail(email);
     return findUserByEmail(email).then((user) => {
-      if(!user){
+      if (!user) {
         return null;
       }
       console.log("finduserby email:", user, email, password);
@@ -67,7 +68,6 @@ module.exports = (db) => {
       res.render("login", vals);
     }
 
-
     // start authentication process
     authenticateUser(email, password)
       .then((user) => {
@@ -92,7 +92,6 @@ module.exports = (db) => {
         // if (req.session.user_id && user.admin === true ) {
         //   IMPLEMENT ADMIN FUNCTIONALITY
         // }
-
 
         // ---- TO SEND ANY OF THE AUTHENTICATED USER'S INFO ANYWHERE ----
         // res.send({ user: { name: user.name, email: user.email, id: user.id } });

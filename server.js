@@ -82,7 +82,7 @@ app.get("/", (req, res) => {
   };
   db.query(queryText)
     .then((data) => {
-      console.log(data.rows[0], req.session.user_id);
+      console.log(data.rows);
       const templateVars = { user: data.rows[0] };
       res.render("index", templateVars);
     })
