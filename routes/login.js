@@ -10,7 +10,6 @@ module.exports = (db) => {
   // Display the login form, but first check if user is logged
   router.get("/", (req, res) => {
     if (req.session.user_id) {
-      console.log("templateVar", req.session.user_id);
       return res.redirect("/");
     }
     const templateVars = { user: null, message: null };
@@ -29,7 +28,7 @@ module.exports = (db) => {
         return res.rows.length > 0 ? res.rows[0] : null;
       })
       .catch((err) => {
-        console.log(err.message);
+        res.status(500).json({ error: err.message });
       });
   };
   exports.findUserByEmail = findUserByEmail;
