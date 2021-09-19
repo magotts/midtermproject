@@ -1,5 +1,10 @@
 node_modules/
 public/styles
+db/schema/00_schema.sql
+db/seeds/00_user_test_for_login.sql
+db/seeds/02_orders.sql
+db/seeds/03_foods.sql
+db/seeds/04_order_details.sql
 .env
 *.log
 *.sqlite3
