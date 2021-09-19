@@ -9,15 +9,15 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
   first_name VARCHAR(255) NOT NULL,
   last_name VARCHAR(255) NOT NULL,
-  -- admin BOOLEAN DEFAULT FALSE,
+  admin BOOLEAN DEFAULT FALSE,
   phone_number VARCHAR(255),
   password VARCHAR(255),
-  email VARCHAR(255),
+  email VARCHAR(255)
 );
 
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
-  user_id INTEGER REFERENCES users(id) NOT NULL,
+  user_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   order_time TIMESTAMP DEFAULT NOW(),
   total_cost INTEGER,
   order_completed BOOLEAN DEFAULT FALSE,
@@ -35,7 +35,7 @@ CREATE TABLE foods (
 
 CREATE TABLE order_details (
    id SERIAL PRIMARY KEY NOT NULL,
-   foods_id INTEGER REFERENCES foods(id) NOT NULL,
-   orders_id INTEGER REFERENCES orders(id) NOT NULL,
+   foods_id INTEGER NOT NULL REFERENCES foods(id) ON DELETE CASCADE,
+   orders_id INTEGER NOT NULL REFERENCES orders(id) ON DELETE CASCADE,
    quantity VARCHAR(255)
 );
