@@ -52,6 +52,7 @@ const widgetsRoutes = require("./routes/widgets");
 
 // login routes
 const loginRoutes = require("./routes/login");
+const menuRoutes = require("./routes/menu")
 const { render } = require("ejs");
 
 // Mount all resource routes
@@ -62,6 +63,8 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 // login use
 app.use("/login", loginRoutes(db));
+app.use("/menu", menuRoutes(db));
+
 
 // logout
 app.post("/logout", (req, res) => {
@@ -91,31 +94,7 @@ app.get("/", (req, res) => {
     .catch((err) => console.log({ err: err.message }));
 });
 
-app.get("/menu", (req, res) => {
-  // get user id from cookies
-  const userId = req.session.user_id;
 
-  // get user from the db
-  const queryText = {
-    text: `SELECT * FROM users WHERE id=$1`,
-    values: [userId],
-  };
-  db.query(queryText)
-    .then((data) => {
-      console.log(data.rows);
-      const templateVars = { user: data.rows[0] };
-      res.render("menu", templateVars);
-    })
-    .catch((err) => console.log({ err: err.message }));
-  // if(userId) {
-  //   res.render('food')
-  // }
-  // else {
-  //   res.status(401);
-  //   res.send({error: 'log in please'})
-  // }
-
-});
 
 app.get("/register", (req, res) => {
   res.render("register");

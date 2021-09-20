@@ -40,6 +40,7 @@
 
 .cart-btn{
   width: 60%;
+  cursor: pointer;
 }
 
 .menu{
@@ -71,6 +72,12 @@
 }
 
 
+// Cart icon
+.fa-shopping-cart {
+  color: $white;
+  margin: 0 1em;
+}
+
 
 // Responsiveness
 
@@ -87,7 +94,7 @@
 
   }
 
-  .cart-counter{
+  .cart-btn{
     font-size: .7em;
   }
 
