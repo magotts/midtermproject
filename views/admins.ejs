@@ -11,6 +11,10 @@
 
     <!-- Link to admins.css stylesheet -->
     <link rel="stylesheet" href="/styles/admins.css" type="text/css" />
+  <!-- Link to google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,600&display=swap" rel="stylesheet">
 
     <title>CYZ Food Pick-up Ordering App - Admin Page</title>
   </head>
@@ -36,7 +40,7 @@
 
         </tr>
         <% for (const orders of data) { %>
-            <tr>
+            <tr class="table-body">
               <td><%= orders.id %></td>
               <td><%= orders.order_time %></td>
               <td><%= orders.total_cost %></td>
