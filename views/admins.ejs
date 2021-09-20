@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <header>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <!-- Link to admins.css stylesheet -->
+    <link rel="stylesheet" href="/styles/admins.css" type="text/css" />
+  <!-- Link to google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,600&display=swap" rel="stylesheet">
+
+    <title>CYZ Food Pick-up Ordering App - Admin Page</title>
+  </head>
+</header>
+<%- include('partials/_header') %>
+
+<body>
+
+    <main style="margin: 1em;">
+      <h5>Welcome Administrator</h5>
+
+      <!-- <form action="/admins" method="POST">
+        <input type="text" name="admin" placeholder="Secret Password">
+        <button type="submit">Enter</button>
+      </form> -->
+
+      <table id="admin-orders-table">
+        <tr class="top-row">
+          <td>Order ID</td>
+          <td>Order Time</td>
+          <td>Order Cost</td>
+          <td>Order Status</td>
+
+        </tr>
+        <% for (const orders of data) { %>
+            <tr class="table-body">
+              <td>Order # <%= orders.id %></td>
+              <td><%= orders.order_time %></td>
+              <td>$<%= orders.total_cost %></td>
+              <td><%= orders.order_status %></td>
+
+            </tr>
+
+       <% } %>
+      </table>
+
+    </main>
+
+</body>
+
+</html>
+
+

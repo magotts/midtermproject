@@ -1,3 +1,4 @@
+//for front end js
 $(() => {
   $.ajax({
     method: "GET",
