@@ -6,10 +6,18 @@ const PORT = process.env.PORT || 8080;
 const ENV = process.env.ENV || "development";
 const express = require("express");
 const bodyParser = require("body-parser");
+<<<<<<< HEAD
 const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
 const cookieSession = require('cookie-session');
+=======
+const sass = require("node-sass-middleware");
+const app = express();
+const morgan = require("morgan");
+// const bcrypt = require("bcryptjs");
+const cookieSession = require("cookie-session");
+>>>>>>> feature/admin_route
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -32,12 +40,15 @@ app.use(
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
-app.use("/styles", sass({
-  src: __dirname + "/styles",
-  dest: __dirname + "/public/styles",
-  debug: true,
-  outputStyle: 'expanded'
-}));
+app.use(
+  "/styles",
+  sass({
+    src: __dirname + "/styles",
+    dest: __dirname + "/public/styles",
+    debug: true,
+    outputStyle: "expanded",
+  })
+);
 app.use(express.static("public"));
 
 app.use(cookieSession({
@@ -50,6 +61,7 @@ app.use(cookieSession({
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 
+<<<<<<< HEAD
 //admin routes
 const adminRouter = require('./routes/admin-router')
 app.use("/admins", adminRouter(db));
@@ -57,6 +69,11 @@ app.use("/admins", adminRouter(db));
 // login routes
 const loginRoutes = require("./routes/login");
 
+=======
+const adminRoutes = require("./routes/admin-router");
+// login routes
+const loginRoutes = require("./routes/login");
+>>>>>>> feature/admin_route
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
