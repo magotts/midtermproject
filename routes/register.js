@@ -40,6 +40,7 @@ const registerRouter = (db) => {
     //exports.addUser = addUser;
 
   });
+
   return router;
 };
 module.exports = registerRouter;
