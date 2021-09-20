@@ -10,7 +10,7 @@ const adminRouter = (db) => {
     ORDER BY order_time DESC;`)
     .then((response) => {
       //response.rows is an array of objects
-      const templateVars = {data: response.rows}
+      const templateVars = {data: response.rows, user:null}
       res.render('admins.ejs', templateVars);
     });
   });
