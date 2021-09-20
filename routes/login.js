@@ -73,7 +73,7 @@ module.exports = (db) => {
       .then((user) => {
         console.log("Here is User:", user);
 
-        // If authenticate user returns null
+        // If authenticateUser returns null
         if (!user || req.session.user_id) {
           res.status(401).render("login", {
             message: "Your username or password is incorrect",
