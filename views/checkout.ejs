@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="/styles/checkout.css" type="text/css" />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/scripts/app.js"></script>
@@ -17,17 +18,33 @@
   <body>
 <h2>REVIEW YOUR ORDER</h2>
 <div class="box">
-<div class="order-summary">
-  <table>
-    <tr>
-    <th>Items</th>
-    <th>Qty</th>
+  <div class="order-summary">
+
+    <table>
+      <tr>
+      <th>Items</th>
+      <th>Qty</th>
+      </tr>
+      <tr>
+        <td>Ham and Cheese</td>
+        <td>5</td>
+      </tr>
+      <tr>
+        <td>Vegan Pizza</td>
+        <td>1</td>
     </tr>
-    <td>Ham and Cheese</td>
-    <td>5</td>
-  </table>
+    </table>
+    Total: $5.00
+    <div><button type="button" class="btn btn-primary">Place Order</button></div>
+  </div>
+  <div class="order-summary">
+    <strong>Restaurant Pick-up Info</strong><br>
+    Pizza Azzip<br>
+    123 Fourth Dr.<br>
+    Scarborough, ON<br>
+  </div>
 </div>
-<div class="resto">Restaurant Pick-up Info</div>
-</div>
+
+
 </body>
 </html>
