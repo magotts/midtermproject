@@ -41,9 +41,9 @@
         </tr>
         <% for (const orders of data) { %>
             <tr class="table-body">
-              <td><%= orders.id %></td>
+              <td>Order # <%= orders.id %></td>
               <td><%= orders.order_time %></td>
-              <td><%= orders.total_cost %></td>
+              <td>$<%= orders.total_cost %></td>
               <td><%= orders.order_status %></td>
 
             </tr>
