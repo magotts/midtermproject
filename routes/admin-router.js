@@ -9,7 +9,11 @@ const adminRouter = (db) => {
   router.get("/", (req, res) => {
     db.query(`SELECT * FROM orders;`)
     .then((response) => {
-      res.json(response.rows);
+      // res.json(response.rows);
+
+      //response.rows is an array of objects
+      const templateVars = {data: response.rows}
+      res.render('admins.ejs', templateVars);
     });
   });
 

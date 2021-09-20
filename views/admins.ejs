@@ -19,12 +19,34 @@
     <main style="margin: 1em;">
       <h5>Welcome Administrator</h5>
 
-      <form action="/admins" method="POST">
+      <!-- <form action="/admins" method="POST">
         <input type="text" name="admin" placeholder="Secret Password">
         <button type="submit">Enter</button>
-      </form>
+      </form> -->
 
+      <table>
+        <% for (const orders of data) { %>
+          <tr>
+            <td>Order ID</td>
+            <td>Customer ID</td>
+            <td>Order Time</td>
+            <td>Order Total</td>
+            <td>Order Completed?</td>
+            <td>Order Status</td>
 
+          </tr>
+            <tr>
+              <td><%= orders.id %></td>
+              <td><%= orders.user_id %></td>
+              <td><%= orders.order_time %></td>
+              <td><%= orders.total_cost %></td>
+              <td><%= orders.order_completed %></td>
+              <td><%= orders.order_status %></td>
+
+            </tr>
+
+       <% } %>
+      </table>
 
     </main>
 
