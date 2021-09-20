@@ -97,7 +97,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/register", (req, res) => {
-  res.render("register");
+  res.render("register", {user: null});
 });
 
 
