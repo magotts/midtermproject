@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const router = express.Router();
 // Secure authentication
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 const registerRouter = (db) => {
   router.post("/", (req, res) => {
