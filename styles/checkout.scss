@@ -1,0 +1,32 @@
+h2 {
+  text-align:center;
+  color: green;
+}
+
+.mainbox {
+  width: fit-content;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.order-summary {
+  display: flex;
+  flex-direction: row;
+  border: solid;
+  display: inline-block;
+  text-align:center;
+}
+
+.resto {
+ // display: flex;
+ // flex-direction: row;
+  border: solid;
+  text-align:center;
+ // justify-content: end;
+}
+
