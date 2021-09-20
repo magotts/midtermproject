@@ -43,6 +43,7 @@ app.use(
   })
 );
 app.use(express.static("public"));
+app.use('/static', express.static('public'))
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -51,6 +52,7 @@ const widgetsRoutes = require("./routes/widgets");
 
 // login routes
 const loginRoutes = require("./routes/login");
+const { render } = require("ejs");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -89,16 +91,36 @@ app.get("/", (req, res) => {
     .catch((err) => console.log({ err: err.message }));
 });
 
+app.get("/menu", (req, res) => {
+  // get user id from cookies
+  const userId = req.session.user_id;
+
+  // get user from the db
+  const queryText = {
+    text: `SELECT * FROM users WHERE id=$1`,
+    values: [userId],
+  };
+  db.query(queryText)
+    .then((data) => {
+      console.log(data.rows);
+      const templateVars = { user: data.rows[0] };
+      res.render("menu", templateVars);
+    })
+    .catch((err) => console.log({ err: err.message }));
+  // if(userId) {
+  //   res.render('food')
+  // }
+  // else {
+  //   res.status(401);
+  //   res.send({error: 'log in please'})
+  // }
+
+});
+
 app.get("/register", (req, res) => {
   res.render("register");
 });
 
-
-
-
-app.get("/menu", (req, res) => {
-  res.render("menu");
-});
 
 
 app.listen(PORT, () => {

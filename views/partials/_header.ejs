@@ -1,3 +1,11 @@
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap"
+  rel="stylesheet">
+
+
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -17,8 +25,10 @@
       </div>
       <% if(user){ %>
         <span class="nav-item nav-link">Hello <%= user.email %>!</span>
+        <i class="bi bi-cart"></i>
         <form class="form-inline" action="/logout" method="POST">
           <button type="submit" class="btn btn-outline-danger">Logout</button>
+          
       </form>
         <% } else { %>
       <a class="nav-link" href="/login">Login</a>
@@ -28,3 +38,8 @@
   </nav>
 
 </header>
+
+
+
+<!--Font Awesome Library-->
+<script src="https://kit.fontawesome.com/5cdd9bd7c4.js" crossorigin="anonymous"></script>

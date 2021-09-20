@@ -1,0 +1,94 @@
+@import './variables';
+
+.bg-image {
+  width: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../images/bg.jpg');
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 30vh;
+  color: $white;
+  height: 20vh;
+  &:p{
+    width: 50%;
+  }
+
+}
+
+
+// CARD "ADD TO CART" AREA STYLING
+.card-img-top {
+  border-radius: 50%;
+}
+
+.card {
+  border-radius: 5%;
+}
+
+.input-cart{
+  width: 100%;
+  display: inline-flex;
+}
+
+.cart-counter{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+}
+
+.cart-btn{
+  width: 60%;
+}
+
+.menu{
+
+}
+
+.btn-number{
+  margin:0;
+}
+
+.btn-primary {
+
+  background-color: $primary;
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-2px);
+    background-color: $hover;
+    box-shadow: 0 0 7px $dark;
+  }
+}
+
+.input-number{
+  display: inline;
+  width: 20%;
+  border-radius: 0%;
+  padding-left: .2rem;
+}
+
+
+
+// Responsiveness
+
+
+@media only screen and (max-width: 1024px) {
+
+  .input-number{
+    height: 1.5rem;
+    padding: .2rem;
+    border-radius: 1px;
+  }
+  .btn-number{
+    font-size: .5rem;
+
+  }
+
+  .cart-counter{
+    font-size: .7em;
+  }
+
+}

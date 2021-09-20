@@ -1,11 +1,9 @@
 @import "./login.scss";
+@import "./menu.scss";
+@import './variables';
 
-// See: https://sass-lang.com/
 
 body {
-  background-color: #EEE;
+  background-color: $dark;
 
-  h1 {
-    color: #244751;
-  }
 }
