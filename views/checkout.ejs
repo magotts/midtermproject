@@ -36,7 +36,7 @@
             <td><span class="items"><%= foodList.items.pizzaId.item["title"] %></span></td>
             <td><span class="price"><%= foodList.items.pizzaId.item["price"] %></span></td>
             <td><%= foodList.items.totalQty %></td>
-            <td><span class="total"><%= Number(foodList.items.pizzaId.item["price"]) * Number(foodList.items.totalQty) %></span></td>
+            <td><span class="total"><%= Number(foodList.items.pizzaId.item["price"]) * Number(foodList.items.totalPrice) %></span></td>
         </tr>
         <% } %>
       </tbody>
