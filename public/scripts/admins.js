@@ -22,7 +22,8 @@ $(() => {
             <td> ${order.order_time} </td>
             <td> $${order.total_cost} </td>
             <td> ${order.order_status} </td>
-            <td> ${order.order_status === "new" ? "<button class='btn-success accept-order'>ACCEPT</button> <button class='btn-danger decline-order'>DECLINE</button>" : ""}
+            <td> ${order.order_status === "new" ? "<button class='btn-success accept-order' data-id=" + order.id + ">ACCEPT</button> <button class='btn-danger decline-order' data-id=" + order.id + ">DECLINE</button>" : ""}
+
              ${order.order_status === "accepted" ?
             "<form class='time'> <input type='text' name='estimatedTime'></form>" : ""}</td>
             </tr>`
@@ -46,12 +47,33 @@ $(() => {
 
     };
 
-
-  $('.accept-order').on("click", (event) => {
-    console.log('hello accept button');
+//when accept order button is clicked
+  $(document).on("click", '.accept-order', (event) => {
     event.preventDefault();
-    $(".accept-order").hide();
+    const buttonId = event.target.dataset.id;
+    $(`button[data-id=${buttonId}]`).hide();
+    //then, show the input form for order time
   });
+
+//when decline order button is clicked
+  $(document).on("click", '.decline-order', (event) => {
+    event.preventDefault();
+    const buttonId = event.target.dataset.id;
+    $(`button[data-id=${buttonId}]`).hide();
+    //grey out entire row
+  });
+
+  $("form .time").on('submit', (event) => {
+    event.preventDefault();
+
+    const $time = $this.serialize();
+
+    console.log($time);
+    // $.post("/admins", $time).then(() => { });
+  // send form data to API to be sent to client as SMS
+
+    });
+
 
     loadOrders();
 
