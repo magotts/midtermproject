@@ -1,14 +1,3 @@
-<!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-  href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:ital,wght@0,300;0,600;1,300;1,600&display=swap"
-  rel="stylesheet">
-
-
-<!--Font Awesome Library-->
-<script src="https://kit.fontawesome.com/5cdd9bd7c4.js" crossorigin="anonymous"></script>
-
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -28,17 +17,51 @@
         </ul>
       </div>
       <% if(user){ %>
-        <span class="nav-item nav-link">Hello <%= user.email %>!</span>
-        <i class="bi bi-cart"></i>
-        <form class="form-inline" action="/logout" method="POST">
-          <button type="submit" class="btn btn-outline-danger">Logout</button>
+
+
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <%= user.email %>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+            <li class="dropdown-item"><span id="cartPrice" class="text-white">
+              <%= session && session.cart ? session.cart.totalPrice : '' %>
+            </span></li>
+            <li class="dropdown-item">
+              <form class="form-inline" action="/logout" method="POST">
+                <button type="submit" class="btn btn-outline-danger">Logout</button>
+              </form>
+            </li>
+          </ul>
+          <!-- <span id="cartQuantity" class="text-white">
+
+          </span> -->
+
           <i class="fas fa-shopping-cart"></i>
-        </form>
-        <% } else { %>
-          <a class="nav-link" href="/login">Login</a>
-          <a class="nav-link" href="/register">Register</a>
-          <% } %>
-    </div>
+          <span class='badge badge-warning' id='cartQuantity'> <%= session && session.cart ? session.cart.totalQty: '' %> </span>
+          <% } else { %>
+            <a class="nav-link" href="/login">Login</a>
+            <a class="nav-link" href="/register">Register</a>
+            <% } %>
+        </div>
   </nav>
+
+
+
+
+
+  <div class="alert alert-success mb-0 alert-dismissible fade show" role="alert" style="display: none;">
+    <strong>Item successfully added!</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <div class="alert alert-danger mb-0 alert-dismissible fade show" role="alert" style="display: none;">
+    <strong>Please log in first</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+
+  </div>
 
 </header>

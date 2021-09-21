@@ -43,7 +43,7 @@ app.use(
   })
 );
 app.use(express.static("public"));
-app.use('/static', express.static('public'))
+app.use("/static", express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -52,7 +52,7 @@ const widgetsRoutes = require("./routes/widgets");
 
 // login routes
 const loginRoutes = require("./routes/login");
-const menuRoutes = require("./routes/menu")
+const menuRoutes = require("./routes/menu");
 const { render } = require("ejs");
 
 // Mount all resource routes
@@ -64,7 +64,6 @@ app.use("/api/widgets", widgetsRoutes(db));
 // login use
 app.use("/login", loginRoutes(db));
 app.use("/menu", menuRoutes(db));
-
 
 // logout
 app.post("/logout", (req, res) => {
@@ -79,6 +78,7 @@ app.post("/logout", (req, res) => {
 app.get("/", (req, res) => {
   // get user id from cookies
   const userId = req.session.user_id;
+  const cart = req.session.cart;
 
   // get user from the db
   const queryText = {
@@ -88,19 +88,15 @@ app.get("/", (req, res) => {
   db.query(queryText)
     .then((data) => {
       console.log(data.rows);
-      const templateVars = { user: data.rows[0] };
+      const templateVars = { user: data.rows[0], session: cart };
       res.render("index", templateVars);
     })
     .catch((err) => console.log({ err: err.message }));
 });
 
-
-
 app.get("/register", (req, res) => {
   res.render("register");
 });
-
-
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
