@@ -8,8 +8,8 @@ const adminRouter = (db) => {
     db.query(`SELECT * FROM orders
     ORDER BY order_time DESC;`)
     .then((response) => {
-      // const templateVars = {data: response.rows, user: null}
-      // res.render('admins.ejs', templateVars);
+      const templateVars = {data: response.rows, user: null}
+      res.render('admins.ejs', templateVars);
       res.json(response.rows);
 
     })

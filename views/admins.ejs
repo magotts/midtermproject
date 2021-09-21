@@ -1,43 +1,82 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <header>
+<header>
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
     <!-- Link to admins.css stylesheet -->
     <link rel="stylesheet" href="/styles/admins.css" type="text/css" />
-  <!-- Link to google font -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,600&display=swap" rel="stylesheet">
+    <!-- Link to google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,600&display=swap"
+      rel="stylesheet">
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <title>CYZ Food Pick-up Ordering App - Admin Page</title>
   </head>
 </header>
 <%- include('partials/_header') %>
 
-<body>
+  <body>
 
     <main style="margin: 1em;">
       <h5>Welcome Administrator</h5>
 
+      <!-- <form action="/admins" method="POST">
+        <input type="text" name="admin" placeholder="Secret Password">
+        <button type="submit">Enter</button>
+      </form> -->
 
+      <table id="admin-orders-table">
+        <tr class="top-row">
+          <td>Order ID</td>
+          <td>Order Time</td>
+          <td>Order Cost</td>
+          <td>Order Status</td>
+        </tr>
+      </table>
+      <div class="orderDisplay">
+        <% for(const orders of data) { %>
+        <tr>
 
+          <td>
+            <%=orders.id%>
+          </td>
+          <td>
+            <%=orders.order_time%>
+          </td>
+          <td>
+            <%=orders.total_cost%>
+          </td>
+          <td>
+            <%=orders.order_status%>
+          </td>
+
+          <button class="accept-order">Accept</button>
+          <button class="decline-order">Decline</button>
+
+          <form action="/admins" method="POST" class="time-to-prepare">
+            <label>Order Will Be Ready At</label>
+            <input type="time" name="time">
+          </form>
+
+        </tr>
+      </div>
+      <% } %>
         <div id="order-container"></div>
 
         <!-- require js file for jquery -->
         <script src="scripts/admins.js"></script>
-      </main>
+    </main>
 
-</body>
+  </body>
 
 </html>
-
-

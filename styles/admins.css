@@ -29,4 +29,8 @@
 .table-body:hover {
   background-color: #f3f3f3;
 }
+
+.orderDisplay {
+  border: solid black;
+}
 /*# sourceMappingURL=admins.css.map */
