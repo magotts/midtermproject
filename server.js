@@ -51,7 +51,7 @@ const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 
 const registerRouter = require('./routes/register');
-const checkoutRouter = require('./routes/checkout');
+const checkoutRouter = require('./routes/checkout-router');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -95,12 +95,9 @@ app.get("/register", (req, res) => {
   res.render("register", {user: null});
 });
 
-app.get("/checkout", (req, res) => {
-  res.render("checkout", {user: null});
+app.get("/ordersuccess", (req, res) => {
+  res.render("ordersuccess", {user: null});
 });
-
-
-
 
 
 app.get("/menu", (req, res) => {
