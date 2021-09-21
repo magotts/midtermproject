@@ -11,9 +11,9 @@ CREATE TABLE users (
   first_name VARCHAR(255) NOT NULL,
   last_name VARCHAR(255) NOT NULL,
   admin BOOLEAN DEFAULT FALSE,
-  phone_number VARCHAR(255),
+  phone_number VARCHAR(255) UNIQUE,
   password VARCHAR(255),
-  email VARCHAR(255)
+  email VARCHAR(255) UNIQUE
 );
 
 CREATE TABLE orders (
