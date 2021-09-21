@@ -55,7 +55,7 @@
           <% for(let pizza of data) { %>
             <div class="col">
               <div class="card h-100">
-                <img src="../images/slice.png" class="card-img-top" alt="...">
+                <img src="<%= pizza.image_url%>" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="col-auto card-title">
                     <%= pizza.title %> - $<%= pizza.price %>
