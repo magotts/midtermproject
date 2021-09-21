@@ -30,7 +30,7 @@ module.exports = (db) => {
     const { pizza, numberOfItems } = req.body;
     const quantity = parseInt(numberOfItems);
     const userId = req.session.user_id;
-    console.log("userId:", userId);
+    // console.log("userId:", userId);
     findUserById(userId)
       .then((user) => {
         if (user && userId) {
@@ -42,7 +42,7 @@ module.exports = (db) => {
             };
           }
           let cart = req.session.cart;
-          console.log(cart);
+          // console.log(cart);
 
           if (!cart.items[pizza.id]) {
             cart.items[pizza.id] = {
@@ -56,7 +56,7 @@ module.exports = (db) => {
             cart.totalQty = cart.totalQty + quantity;
             cart.totalPrice = cart.totalPrice + parseInt(pizza.price);
           }
-          console.log("this is a cart:",cart.items[1853]);
+          // console.log("this is a cart:",cart.items[1853]);
           return res.status(200).json({
             totalQty: req.session.cart.totalQty,
             totalPrice: req.session.cart.totalPrice,
@@ -71,7 +71,7 @@ module.exports = (db) => {
     // get user id from cookies
     const userId = req.session.user_id;
     const session = req.session;
-    console.log(session);
+    // console.log(session);
 
     findUserById(userId)
       .then((user) => {
@@ -82,19 +82,22 @@ module.exports = (db) => {
 
         db.query(queryText)
           .then((data) => {
-            console.log(data);
-            data.rows.forEach((e) => console.log(e));
+            // console.log(data);
+            // data.rows.forEach((e) => console.log(e));
             console.log(data.rows, user);
             const templateVars = { user, data: data.rows, session };
             res.render("menu", templateVars);
           })
-          .catch((err) => console.log({ err: err.message }));
+          .catch((err) => {
+            err: err.message;
+          });
       })
       .catch((err) => {
-        console.log({ err: err.message });
+        {
+          err: err.message;
+        }
       });
   });
-
 
   return router;
 };

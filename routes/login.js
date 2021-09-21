@@ -41,7 +41,7 @@ module.exports = (db) => {
       if (!user) {
         return null;
       }
-      console.log("finduserby email:", user, email, password);
+      // console.log("finduserby email:", user, email, password);
       if (bcrypt.compareSync(password, user.password)) {
         return user;
       }
@@ -71,7 +71,7 @@ module.exports = (db) => {
     // start authentication process
     authenticateUser(email, password)
       .then((user) => {
-        console.log("Here is User:", user);
+        // console.log("Here is User:", user);
 
         // If authenticateUser returns null
         if (!user || req.session.user_id) {
