@@ -1,12 +1,14 @@
 console.log("hello world heyy");
 
+$(function() {
+  $('.qty').change(function() {
+      let total = 0;
 
-$(document).ready(function() {
+      $('.qty').each(function() {
+          if( $(this).val() != '' )
+              total += parseInt($(this).val());
+      });
 
-
-  const listItem = document.querySelector(".items");
-
-
-
+      $('.total').html(total);
+  });
 });
-

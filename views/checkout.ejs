@@ -35,14 +35,17 @@
           <tr>
             <td><span class="items"><%= foodList.items.pizzaId.item["title"] %></span></td>
             <td><span class="price"><%= foodList.items.pizzaId.item["price"] %></span></td>
-            <td><input type="number" name="qty" style="width: 3em" value="<%= foodList.items.totalQty %>"></td>
-            <td><span class="total"><%= foodList.items.totalPrice %></span></td>
+            <td><%= foodList.items.totalQty %></td>
+            <td><span class="total"><%= Number(foodList.items.pizzaId.item["price"]) * Number(foodList.items.totalQty) %></span></td>
         </tr>
         <% } %>
       </tbody>
     </table>
-
-
+    <% let totalPrice = 0; %>
+    <% for (let total of cart) { %>
+    <% totalPrice += total.items.totalPrice %>
+    <% } %>
+    <span>Total Price: $<% totalPrice %></span>
 
     <form method="POST" action="/ordersuccess">
       <button type="submit" class="btn btn-primary">Place order</button>

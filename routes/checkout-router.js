@@ -28,7 +28,7 @@ let cart = [
         item: {
           id: 1745,
           title: "Vegan Pizza",
-          price: 152,
+          price: 15,
           stock: 20,
           description: "For Vegetarians only",
           image_url:
