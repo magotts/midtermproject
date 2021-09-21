@@ -1,0 +1,33 @@
+.top-row {
+  padding: 25px;
+  font-weight: 600;
+  font-style: italic;
+  border: solid black;
+  background-color: #db5f5f;
+}
+
+#order-container tr {
+  padding: 20px;
+  border-bottom: 1px solid #db5f5f;
+  font-weight: 400;
+}
+
+#order-container tr:hover {
+  background-color: #f3f3f3;
+}
+
+.orderDisplay {
+  border: solid black;
+}
+
+table {
+  min-width: 1000px;
+  border: solid black;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+}
+/*# sourceMappingURL=admins.css.map */
