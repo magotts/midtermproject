@@ -42,6 +42,7 @@ $(document).ready(function () {
   $(".cart-btn").on("click", function () {
     // count how many items
     const numberOfItems = parseInt($(this).siblings().find("input").val());
+    $('input').val(0);
     const $cartBefore = $("#cartQuantity").html();
     console.log("cartCount", $cartBefore);
     const pizza = JSON.parse($(this).val());
@@ -52,6 +53,7 @@ $(document).ready(function () {
 
         // check if there is an increment in the cart quantity and alert whether  item was added or not
         const $cartAfter = $("#cartQuantity").html();
+
         console.log("cartCount", $cartAfter);
         if ($cartAfter > $cartBefore) {
           $(".alert-success").show();
