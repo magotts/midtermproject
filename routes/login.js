@@ -14,6 +14,7 @@ module.exports = (db) => {
       return res.redirect("/");
     }
     const templateVars = { user: null, message: null };
+    console.log('hello from login route');
     res.render("login", templateVars);
   });
 

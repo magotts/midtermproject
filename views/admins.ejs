@@ -16,6 +16,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,600&display=swap" rel="stylesheet">
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <title>CYZ Food Pick-up Ordering App - Admin Page</title>
   </head>
 </header>
@@ -26,32 +28,13 @@
     <main style="margin: 1em;">
       <h5>Welcome Administrator</h5>
 
-      <!-- <form action="/admins" method="POST">
-        <input type="text" name="admin" placeholder="Secret Password">
-        <button type="submit">Enter</button>
-      </form> -->
 
-      <table id="admin-orders-table">
-        <tr class="top-row">
-          <td>Order ID</td>
-          <td>Order Time</td>
-          <td>Order Cost</td>
-          <td>Order Status</td>
 
-        </tr>
-        <% for (const orders of data) { %>
-            <tr class="table-body">
-              <td>Order # <%= orders.id %></td>
-              <td><%= orders.order_time %></td>
-              <td>$<%= orders.total_cost %></td>
-              <td><%= orders.order_status %></td>
+        <div id="order-container"></div>
 
-            </tr>
-
-       <% } %>
-      </table>
-
-    </main>
+        <!-- require js file for jquery -->
+        <script src="scripts/admins.js"></script>
+      </main>
 
 </body>
 

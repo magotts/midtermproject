@@ -84,8 +84,10 @@ app.post("/logout", (req, res) => {
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
   // get user id from cookies
-  const userId = req.session.user_id;
-
+  // const userId = req.session.user_id;
+  //DON'T FORGET THIS
+  const userId = 1;
+console.log('hello from get route', userId);
   // get user from the db
   const queryText = {
     text: `SELECT * FROM users WHERE id=$1`,
@@ -97,7 +99,7 @@ app.get("/", (req, res) => {
       const templateVars = { user: data.rows[0] };
       res.render("index", templateVars);
     })
-    .catch((err) => console.log({ err: err.message }));
+    .catch((err) => console.log({ err: err.message }, 'javascript sucks'));
 });
 
 app.get("/register", (req, res) => {
