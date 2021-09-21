@@ -45,30 +45,26 @@ $(document).ready(function () {
     const numberOfItems = parseInt($(this).siblings().find("input").val());
     const pizza = JSON.parse($(this).val());
     console.log(pizza, numberOfItems);
-    $.post(`/menu/${pizza.id}`, { pizza, numberOfItems })
+    $.post(`/pizza/${pizza.id}`, { pizza, numberOfItems })
       .then((response) => {
         console.log("number of", response.totalQty);
         $("#cartQuantity").empty().html(response.totalQty);
         $("#cartPrice").html(`Running total is $${response.totalPrice}`);
-        return response
       })
-      .then((res) => {
-
-        if (res.totalQty > currentVal) {
-          $(".alert-success").show();
-          setTimeout(() => {
-            $(".alert-success").fadeOut();
-          }, 500);
-        }
-        else {
-          $(".alert-danger").show();
-          setTimeout(() => {
-            $(".alert-danger").fadeOut();
-          }, 500);
-        }
-      })
-      .catch((err)=>{
-
-      })
+      .then()
+      .catch((err) => {});
   });
 });
+
+// if (res.totalQty > currentVal) {
+//   $(".alert-success").show();
+//   setTimeout(() => {
+//     $(".alert-success").fadeOut();
+//   }, 500);
+// }
+// else {
+//   $(".alert-danger").show();
+//   setTimeout(() => {
+//     $(".alert-danger").fadeOut();
+//   }, 500);
+// }

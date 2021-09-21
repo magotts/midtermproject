@@ -53,6 +53,7 @@ const widgetsRoutes = require("./routes/widgets");
 // login routes
 const loginRoutes = require("./routes/login");
 const menuRoutes = require("./routes/menu");
+const logoutRoutes = require("./routes/logout")
 const { render } = require("ejs");
 
 // Mount all resource routes
@@ -63,14 +64,10 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 // login use
 app.use("/login", loginRoutes(db));
-app.use("/menu", menuRoutes(db));
+app.use("/", menuRoutes(db));
+app.use("/logout", logoutRoutes())
 
-// logout
-app.post("/logout", (req, res) => {
-  req.session = null;
-  // redirect home
-  res.redirect("/");
-});
+
 
 // Home page
 // Warning: avoid creating more routes in this file!

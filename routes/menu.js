@@ -26,7 +26,7 @@ module.exports = (db) => {
   // req.session is then updated with new cart information
   // returns quantity and price to be used in the navbar
 
-  router.post("/:id", (req, res) => {
+  router.post("/pizza/:id", (req, res) => {
     const { pizza, numberOfItems } = req.body;
     const quantity = parseInt(numberOfItems);
     const userId = req.session.user_id;
@@ -56,6 +56,7 @@ module.exports = (db) => {
             cart.totalQty = cart.totalQty + quantity;
             cart.totalPrice = cart.totalPrice + parseInt(pizza.price);
           }
+          console.log("this is a cart:",cart.items[1853]);
           return res.status(200).json({
             totalQty: req.session.cart.totalQty,
             totalPrice: req.session.cart.totalPrice,
@@ -72,22 +73,28 @@ module.exports = (db) => {
     const session = req.session;
     console.log(session);
 
-    findUserById(userId).then((user) => {
-      // get menu items from the db
-      const queryText = {
-        text: `SELECT * FROM foods;`,
-      };
+    findUserById(userId)
+      .then((user) => {
+        // get menu items from the db
+        const queryText = {
+          text: `SELECT * FROM foods;`,
+        };
 
-      db.query(queryText)
-        .then((data) => {
-          data.rows.forEach((e) => console.log(e));
-          console.log(data.rows, user);
-          const templateVars = { user, data: data.rows, session };
-          res.render("menu", templateVars);
-        })
-        .catch((err) => console.log({ err: err.message }));
-    });
+        db.query(queryText)
+          .then((data) => {
+            console.log(data);
+            data.rows.forEach((e) => console.log(e));
+            console.log(data.rows, user);
+            const templateVars = { user, data: data.rows, session };
+            res.render("menu", templateVars);
+          })
+          .catch((err) => console.log({ err: err.message }));
+      })
+      .catch((err) => {
+        console.log({ err: err.message });
+      });
   });
+
 
   return router;
 };
