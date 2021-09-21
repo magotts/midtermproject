@@ -82,16 +82,18 @@ module.exports = (db) => {
           });
           return;
         }
+
+    // --- FOR admin ---
+        if (user.admin === true ) {
+          req.session.user_id = user.id;
+          return res.redirect("/admins");
+        }
+
         req.session.user_id = user.id;
         if (req.session.user_id) {
           res.redirect("/");
         }
 
-        // --- FOR admin ---
-
-        if (req.session.user_id && user.admin === true ) {
-          res.redirect("/admins");
-        }
 
         // ---- TO SEND ANY OF THE AUTHENTICATED USER'S INFO ANYWHERE ----
         // res.send({ user: { name: user.name, email: user.email, id: user.id } });
