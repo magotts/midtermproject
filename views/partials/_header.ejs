@@ -1,8 +1,9 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">CYZ Food PickUp</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="/">CYZ Food PickUp</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -10,22 +11,54 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/">Home</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/menu">Menu</a>
-          </li>
         </ul>
       </div>
       <% if(user){ %>
-        <span class="nav-item nav-link">Hello <%= user.email %>!</span>
-        <form class="form-inline" action="/logout" method="POST">
-          <button type="submit" class="btn btn-outline-danger">Logout</button>
-      </form>
-        <% } else { %>
-      <a class="nav-link" href="/login">Login</a>
-      <a class="nav-link" href="/register">Register</a>
-      <% } %>
-    </div>
-    </div>
+
+
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <%= user.email %>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+            <li class="dropdown-item"><span id="cartPrice" class="text-white">
+              <%= session && session.cart ? session.cart.totalPrice : '' %>
+            </span></li>
+            <li class="dropdown-item">
+              <form class="form-inline" action="/logout" method="POST">
+                <button type="submit" class="btn btn-outline-danger">Logout</button>
+              </form>
+            </li>
+          </ul>
+          <!-- <span id="cartQuantity" class="text-white">
+
+          </span> -->
+
+          <i class="fas fa-shopping-cart"></i>
+          <span class='badge badge-warning' id='cartQuantity'> <%= session && session.cart ? session.cart.totalQty: '' %> </span>
+          <% } else { %>
+            <a class="nav-link" href="/login">Login</a>
+            <a class="nav-link" href="/register">Register</a>
+            <% } %>
+        </div>
   </nav>
+
+
+
+
+
+  <div class="alert alert-success mb-0 alert-dismissible fade show" role="alert" style="display: none;">
+    <strong>Item successfully added!</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <div class="alert alert-danger mb-0 alert-dismissible fade show" role="alert" style="display: none;">
+    <strong>Please add item</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+
+  </div>
 
 </header>
