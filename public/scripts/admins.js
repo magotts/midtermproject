@@ -51,15 +51,17 @@ $(() => {
   $(document).on("click", '.accept-order', (event) => {
     event.preventDefault();
     const buttonId = event.target.dataset.id;
-    $(`button[data-id=${buttonId}]`).hide();
+    // $(`button[data-id=${buttonId}]`).hide();
+    $(`button[data-id=${buttonId}]`).replaceWith(`<form class='time'> <label>Order Will be Ready for Pickup At...</label><input type='text' name='estimatedTime'></form>`);
     //then, show the input form for order time
+
   });
 
 //when decline order button is clicked
   $(document).on("click", '.decline-order', (event) => {
     event.preventDefault();
     const buttonId = event.target.dataset.id;
-    $(`button[data-id=${buttonId}]`).hide();
+    $(`button[data-id=${buttonId}]`).hide().replaceWith(`<p>Order Declined</p>`);
     //grey out entire row
   });
 
