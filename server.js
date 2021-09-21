@@ -96,7 +96,7 @@ app.get("/", (req, res) => {
   // get user id from cookies
   // const userId = req.session.user_id;
   //DON'T FORGET THIS
-  const userId = 1;
+  const userId = req.session.user_id;
 console.log('hello from get route', userId);
   // get user from the db
   const queryText = {
