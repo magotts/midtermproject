@@ -2,33 +2,36 @@ $border: solid black;
 $red-border: solid #db5f5f;
 $font: 'Montserrat', sans-serif;
 
-#admin-orders-table {
-min-width: 1000px;
-border: $border;
-text-align: center;
-font-family: $font;
-border-radius: 5px 5px 0 0;
-overflow: hidden;
-box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
-}
 
-#admin-orders-table .top-row{
+
+.top-row {
+  padding: 25px;
+  font-weight: 600;
+  font-style: italic;
   border: $border;
   background-color: #db5f5f;
 }
 
-.top-row td {
-  padding: 25px;
-  font-weight: 600;
-  font-style: italic;
-}
-
-.table-body td {
+#order-container tr{
   padding: 20px;
   border-bottom: 1px $red-border;
   font-weight: 400;
 }
 
-.table-body:hover {
+#order-container tr:hover {
   background-color: #f3f3f3;
 }
+
+.orderDisplay {
+  border: $border;
+}
+
+table {
+  min-width: 1000px;
+  border: $border;
+  text-align: center;
+  font-family: $font;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  }
