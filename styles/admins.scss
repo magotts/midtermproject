@@ -39,3 +39,9 @@ table {
   .declined-message {
 color: red;
   }
+
+  input[type=text] {
+    width: 65px;
+    border: 2px solid gray;
+    border-radius: 10%;
+  }

@@ -17,7 +17,7 @@ $(() => {
 
   const createOrderElement = (order) => {
 
-      const tableContent =`<tr>
+      const tableContent =`<tr class="order-row">
             <td> ${order.id} </td>
             <td> ${order.order_time} </td>
             <td> $${order.total_cost} </td>
@@ -52,7 +52,9 @@ $(() => {
     event.preventDefault();
     const buttonId = event.target.dataset.id;
     // $(`button[data-id=${buttonId}]`).hide();
-    $(`button[data-id=${buttonId}]`).replaceWith(`<form class='time'> <label>Order Will be Ready for Pickup At...</label><input type='text' name='estimatedTime'></form>`);
+    $(`button[data-id=${buttonId}]`).replaceWith(`<form class='time'>
+    <label>Order Will be Ready for Pickup At...</label>
+    <input type='text' name='estimatedTime'><button class="btn-sm btn-outline-success">Submit</button></form>`);
     //then, show the input form for order time
 
   });
