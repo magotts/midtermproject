@@ -18,6 +18,7 @@ const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
 db.connect();
 
+
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
@@ -61,16 +62,25 @@ app.use("/admins", adminRouter(db));
 // login routes
 const loginRoutes = require("./routes/login");
 
+const registerRouter = require('./routes/register');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 
+app.use("/register", registerRouter(db));
 // Note: mount other resources here, using the same pattern above
 
 // login use
 app.use("/login", loginRoutes(db));
+
+// logout
+app.post("/logout", (req, res) => {
+  req.session = null;
+  // redirect home
+  res.redirect("/");
+});
 
 // logout
 app.post("/logout", (req, res) => {
