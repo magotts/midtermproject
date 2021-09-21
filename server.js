@@ -52,6 +52,7 @@ const widgetsRoutes = require("./routes/widgets");
 
 const registerRouter = require('./routes/register');
 const checkoutRouter = require('./routes/checkout-router');
+const placeorderRouter = require('./routes/placeorder-router');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -60,6 +61,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 
 app.use("/register", registerRouter(db));
 app.use("/checkout", checkoutRouter(db));
+app.use("/ordersuccess", placeorderRouter(db));
 // Note: mount other resources here, using the same pattern above
 
 

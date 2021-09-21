@@ -31,7 +31,17 @@
         </tr>
       </thead>
       <tbody>
-          <% for (let item of data) { %>
+        <% for (let foodList of cart) { %>
+          <tr>
+            <td><span class="items"><%= foodList.items.foodId.item['title'] %></span></td>
+            <td><span class="price"><%= foodList.items.totalPrice %></span></td>
+            <td><input type="number" name="qty" style="width: 3em" value="<%= foodList.items.totalQty %>"></td>
+            <!-- <td><span class="total"><%= Number(foodList.items.totalPrice) * Number(foodList.items.totalQty) %></span></td> -->
+          </tr>
+
+
+
+          <!-- <% for (let item of data) { %>
           <tr>
             <td><span class="items"><%= item.title %></span></td>
             <td><span class="price"><%= item.price %></span></td>
@@ -39,7 +49,7 @@
             <td><span class="total"><%= Number(item.price) * Number(item.quantity) %></span></td>
           </tr>
           <% } %>
-
+ -->
 
         <!-- <tr>
 
@@ -54,12 +64,14 @@
       </tbody>
     </table>
 
-    Subtotal: <span class="subtotal">$50.00<br>
+    Subtotal: <span class="subtotal">$<%= foodList.items.totalPrice %><br>
       Tax: $<span class="tax">6.50</span><br>
       Total: $<strong><span class="finaltotal"></span>56.50</strong><br>
-    <form method="GET" action="/ordersuccess">
+      <% } %>
+    <form method="POST" action="/ordersuccess">
       <button type="submit" class="btn btn-primary">Place order</button>
     </form>
+
 
   </div>
   <div class="order-summary">

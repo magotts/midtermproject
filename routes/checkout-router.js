@@ -1,7 +1,8 @@
 const express = require("express");
-const app = express();
 const router = express.Router();
 // Secure authentication
+
+
 let cart = [
   {
     items: {
@@ -77,41 +78,30 @@ let cart = [
   },
 ];
 
-const checkoutRouter = (db) => {
+const checkoutRouter = () => {
   router.get("/", (req, res) => {
-    const queryString = `SELECT foods.title, foods.price, order_details.quantity
-    FROM foods
-    JOIN order_details ON order_details.foods_id = foods.id
-    JOIN orders ON order_details.orders_id = orders.id
-    WHERE orders_id = 3`;
-    return db
-      .query(queryString)
-      .then((result) => {
-        console.log("result row is", result.rows);
-        const templateVars = { data: result.rows, user: null };
-        res.render("checkout.ejs", templateVars);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    console.log("CART is", cart[0]);
+    const templateVars = { cart, user: null };
+    res.render("checkout", templateVars);
   });
 
+
   //delete an item
-  router.post("/checkout/:foods_id/delete", (req, res) => {
-    const foodsId = req.params.foods_id;
-    const queryString = `
-    delete`;
-    return db
-      .query(queryString)
-      .then((result) => {
-        console.log("result row is", result.rows);
-        // const templateVars = {data: result.rows};
-        // res.render('checkout.ejs', templateVars);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  });
+  // router.post("/checkout/:foods_id/delete", (req, res) => {
+  //   const foodsId = req.params.foods_id;
+  //   const queryString = `
+  //   delete`;
+  //   return db
+  //     .query(queryString)
+  //     .then((result) => {
+  //       console.log("result row is", result.rows);
+  //       // const templateVars = {data: result.rows};
+  //       // res.render('checkout.ejs', templateVars);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err.message);
+  //     });
+  // });
 
   return router;
 };
