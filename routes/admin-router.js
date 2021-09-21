@@ -2,19 +2,20 @@ const express = require('express');
 const router  = express.Router();
 
 const adminRouter = (db) => {
+  router.get("/", (req, res) => {
+    // const templateVars = {user: null}
+      res.render('admins.ejs', {user: null});
+  })
 
   //GET /admins
-  router.get("/", (req, res) => {
+  router.get("/orders", (req, res) => {
     db.query(`SELECT * FROM orders
     ORDER BY order_time DESC;`)
     .then((response) => {
-      const templateVars = {data: response.rows, user: null}
-      res.render('admins.ejs', templateVars);
       res.json(response.rows);
-
     })
-    .catch((err) => {
-      err.message;
+    .catch((error) => {
+      console.error(error);
     })
   });
 

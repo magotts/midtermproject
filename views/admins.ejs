@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
       integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
 
-    <!-- Link to admins.css stylesheet -->
-    <link rel="stylesheet" href="/styles/admins.css" type="text/css" />
     <!-- Link to google font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +17,8 @@
       rel="stylesheet">
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
+    <!-- Link to admins.css stylesheet -->
+    <link rel="stylesheet" href="/styles/admins.css" type="text/css" />
 
     <title>CYZ Food Pick-up Ordering App - Admin Page</title>
   </head>
@@ -36,29 +36,19 @@
       </form> -->
 
       <table id="admin-orders-table">
+        <thead>
         <tr class="top-row">
-          <td>Order ID</td>
-          <td>Order Time</td>
-          <td>Order Cost</td>
-          <td>Order Status</td>
+          <th>Order ID</th>
+          <th>Order Time</th>
+          <th>Order Cost</th>
+          <th>Order Status</th>
         </tr>
+      </thead>
+      <tbody id="order-container">
+        <!-- jquery will insert data here -->
+      </tbody>
       </table>
       <div class="orderDisplay">
-        <% for(const orders of data) { %>
-        <tr>
-
-          <td>
-            <%=orders.id%>
-          </td>
-          <td>
-            <%=orders.order_time%>
-          </td>
-          <td>
-            <%=orders.total_cost%>
-          </td>
-          <td>
-            <%=orders.order_status%>
-          </td>
 
           <button class="accept-order">Accept</button>
           <button class="decline-order">Decline</button>
@@ -70,8 +60,6 @@
 
         </tr>
       </div>
-      <% } %>
-        <div id="order-container"></div>
 
         <!-- require js file for jquery -->
         <script src="scripts/admins.js"></script>
