@@ -36,7 +36,7 @@ table {
 }
 
 input[type=text] {
-  width: 65px;
+  width: 75px;
   border: 2px solid gray;
   border-radius: 10%;
 }
