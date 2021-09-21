@@ -80,7 +80,7 @@ let cart = [
 
 const checkoutRouter = () => {
   router.get("/", (req, res) => {
-    console.log("CART is", cart[0]);
+    console.log("CART is", cart);
     const templateVars = { cart, user: null };
     res.render("checkout", templateVars);
   });
