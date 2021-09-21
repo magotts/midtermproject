@@ -89,9 +89,9 @@ module.exports = (db) => {
 
         // --- FOR admin ---
 
-        // if (req.session.user_id && user.admin === true ) {
-        //   IMPLEMENT ADMIN FUNCTIONALITY
-        // }
+        if (req.session.user_id && user.admin === true ) {
+          res.redirect("/admins");
+        }
 
         // ---- TO SEND ANY OF THE AUTHENTICATED USER'S INFO ANYWHERE ----
         // res.send({ user: { name: user.name, email: user.email, id: user.id } });
