@@ -42,6 +42,8 @@
           <th>Order Time</th>
           <th>Order Cost</th>
           <th>Order Status</th>
+          <th>Accept Order</th>
+
         </tr>
       </thead>
       <tbody id="order-container">
@@ -50,15 +52,12 @@
       </table>
       <div class="orderDisplay">
 
-          <button class="accept-order">Accept</button>
-          <button class="decline-order">Decline</button>
 
           <form action="/admins" method="POST" class="time-to-prepare">
             <label>Order Will Be Ready At</label>
             <input type="time" name="time">
           </form>
 
-        </tr>
       </div>
 
         <!-- require js file for jquery -->
