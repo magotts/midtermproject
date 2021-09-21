@@ -22,8 +22,9 @@ $(() => {
             <td> ${order.order_time} </td>
             <td> $${order.total_cost} </td>
             <td> ${order.order_status} </td>
-            <td> ${order.order_status === "new" ? "<button class='accept-order'>ACCEPT</button>" : ""} </td>
-
+            <td> ${order.order_status === "new" ? "<button class='btn-success accept-order'>ACCEPT</button> <button class='btn-danger decline-order'>DECLINE</button>" : ""}
+             ${order.order_status === "accepted" ?
+            "<form class='time'> <input type='text' name='estimatedTime'></form>" : ""}</td>
             </tr>`
 
             const $orderElement = $(tableContent) ;

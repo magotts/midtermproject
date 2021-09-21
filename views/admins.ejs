@@ -30,19 +30,14 @@
     <main style="margin: 1em;">
       <h5>Welcome Administrator</h5>
 
-      <!-- <form action="/admins" method="POST">
-        <input type="text" name="admin" placeholder="Secret Password">
-        <button type="submit">Enter</button>
-      </form> -->
-
-      <table id="admin-orders-table">
+      <table cellpadding="15" id="admin-orders-table">
         <thead>
         <tr class="top-row">
           <th>Order ID</th>
           <th>Order Time</th>
           <th>Order Cost</th>
           <th>Order Status</th>
-          <th>Accept Order</th>
+          <th>Order Details</th>
 
         </tr>
       </thead>
@@ -50,15 +45,6 @@
         <!-- jquery will insert data here -->
       </tbody>
       </table>
-      <div class="orderDisplay">
-
-
-          <form action="/admins" method="POST" class="time-to-prepare">
-            <label>Order Will Be Ready At</label>
-            <input type="time" name="time">
-          </form>
-
-      </div>
 
         <!-- require js file for jquery -->
         <script src="scripts/admins.js"></script>
