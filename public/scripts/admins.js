@@ -61,7 +61,7 @@ $(() => {
   $(document).on("click", '.decline-order', (event) => {
     event.preventDefault();
     const buttonId = event.target.dataset.id;
-    $(`button[data-id=${buttonId}]`).hide().replaceWith(`<p>Order Declined</p>`);
+    $(`button[data-id=${buttonId}]`).hide().replaceWith(`<p class="declined-message">Order Declined</p>`);
     //grey out entire row
   });
 
