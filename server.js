@@ -65,6 +65,7 @@ app.use("/admins", adminRouter(db));
 const loginRoutes = require("./routes/login");
 const menuRoutes = require("./routes/menu");
 const logoutRoutes = require("./routes/logout");
+const orderRoutes = require("./routes/order");
 const { render } = require("ejs");
 
 const registerRouter = require("./routes/register");
@@ -73,7 +74,6 @@ const registerRouter = require("./routes/register");
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
-
 app.use("/register", registerRouter(db));
 // Note: mount other resources here, using the same pattern above
 
@@ -81,6 +81,7 @@ app.use("/register", registerRouter(db));
 app.use("/login", loginRoutes(db));
 app.use("/", menuRoutes(db));
 app.use("/logout", logoutRoutes());
+app.use("/order", orderRoutes(db));
 
 // logout
 app.post("/logout", (req, res) => {
