@@ -30,12 +30,12 @@ const adminRouter = (db) => {
       const record = response.rows[0];
       console.log('record:', record);
       db.query(`UPDATE orders
-      SET order_estimation = ${estimatedTime}
+      SET order_estimation = ${estimatedTime},
       order_status = 'accepted'
       WHERE id=${record.id}
       RETURNING order_estimation`)
       .then((response2) => {
-        console.log(response2);
+        console.log('THIS IS THE RESPONSE:', response2.rows[0].order_estimation);
         res.json(response2);
       })
     });

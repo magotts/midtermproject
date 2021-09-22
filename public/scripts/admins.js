@@ -26,7 +26,7 @@ $(() => {
             <td> ${order.order_status === "new" ? "<div class='admin-button-container' data-id=" + order.id + "><button class='btn-success accept-order' data-id=" + order.id + ">ACCEPT</button> <button class='btn-danger decline-order' data-id=" + order.id + ">DECLINE</button></div>" : ""}
 
              ${order.order_status === "accepted" ?
-            "<form class='time'> <input type='text' name='estimatedTime'></form>" : ""}</td>
+            "<p>Order In Progress</p> <button class='btn btn-outline-info'>Complete Order</button>" : ""}</td>
 
 
             </tr>`
@@ -75,13 +75,11 @@ $(document).on('submit', '.preparation-time', function(event) {
     const data = $(this).serialize();
     const orderId = ($(this).data('id'));
     console.log('data:', data);
-    console.log(event.target);
-    // const orderId = event.target.dataset.id;
-    // Did you check for event that redirects for the route admin ?
+
     $.post('/admins/orders/' + orderId, data)
     .then((response) => {
       //response is estimated_time
-      console.log('response', response);
+      const duration = (response.rows[0].order_estimation);
       // return sendSms(response);
 
       //pass response to the api function
