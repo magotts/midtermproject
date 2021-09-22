@@ -14,7 +14,6 @@
     <script type="text/javascript" src="/scripts/checkout.js"></script>
   </head>
   <%- include('partials/_header') %>
-
   <body>
 <h2>REVIEW YOUR ORDER</h2>
 
@@ -40,7 +39,7 @@
             <td><span class="price"><%= foodList.item.price %></span></td>
             <td><span class="qty"><%= foodList.qty %></span></td>
             <td><span class="total"><%=  Number(foodList.item.price) * Number(foodList.qty) %></span></td>
-            <td><form method="POST" action="/checkout/:food_id/delete"><button id="deletebutton" value="Delete">Delete</button></form></td>
+            <td><button data-id="deleteid" id="deletebutton" value="Delete">Delete</button></form></td>
 
         </tr>
 <% } %>
@@ -48,8 +47,10 @@
 
       </tbody>
     </table>
-
-    Total Amount: $<%= cart.totalPrice %>
+    Subtotal: $<%= cart.totalPrice %> <br>
+    Tax: $<%= Math.round(cart.totalPrice * .13) %> <br>
+    <% let finalprice = Math.round(cart.totalPrice * 1.13); %> <br>
+    Total: <strong>$<%= Math.round(finalprice) %></strong><br>
 
 
     <form method="POST" action="/ordersuccess">
