@@ -6,14 +6,13 @@ const checkoutRouter = (db) => {
   router.get("/", (req, res) => {
     let cart = req.session.cart;
     console.log("CART is",cart);
+    console.log("CART items is",cart.items);
     console.log("Total price is",cart.totalPrice);
     for (let list of Object.values(cart.items)) {
-      console.log(list.item.id);
-      console.log(list.item.title);
-      console.log(list.qty);
-      console.log(list.price);
-
-    }
+      console.log("id is:", list.item.price);
+      console.log("food name is:", list.item.title);
+      console.log("qty of food is:", list.qty);
+   }
     const templateVars = { cart, user: null };
     res.render("checkout", templateVars);
   });
