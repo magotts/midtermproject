@@ -39,7 +39,7 @@
             <td><span class="price"><%= foodList.item.price %></span></td>
             <td><span class="qty"><%= foodList.qty %></span></td>
             <td><span class="total"><%=  Number(foodList.item.price) * Number(foodList.qty) %></span></td>
-            <td><button data-id="deleteid" id="deletebutton" value="Delete">Delete</button></form></td>
+            <td><form method="delete"><button data-id="deleteid" id="deletebutton" value="Delete">Delete</button></form></td>
 
         </tr>
 <% } %>
