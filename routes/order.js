@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const router = express.Router();
+const text = require("../public/scripts/api/send_sms");
 
 module.exports = (db) => {
   router.post("/", (req, res) => {
@@ -44,7 +45,7 @@ module.exports = (db) => {
 
 
           req.session.cart = null;
-
+          console.log("here is order Id",orderId);
           // sending this to menu js to be handled through ajax
           res.status(200).json({orderId: orderId.id})
         })
@@ -55,6 +56,13 @@ module.exports = (db) => {
       res.redirect("/");
     }
   });
+
+  router.get('/', (req,res)=>{
+
+    text()
+    console.log('success');
+
+  })
 
   return router;
 };

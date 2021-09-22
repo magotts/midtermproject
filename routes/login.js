@@ -1,8 +1,7 @@
 const express = require("express");
 const app = express();
 const router = express.Router();
-// Secure authentication
-const bcrypt = require("bcryptjs");
+const { authenticateUser } = require("../lib/helper_functions");
 
 module.exports = (db) => {
   // -- GET route for login ---
@@ -16,40 +15,6 @@ module.exports = (db) => {
     const templateVars = { user: null, message: null };
     res.render("login", templateVars);
   });
-
-  // function that gets users using email - to be used to match db and authenticate only
-  const findUserByEmail = function (email) {
-    const queryString = `
-    SELECT * FROM users WHERE users.email = $1
-    `;
-
-    return db
-      .query(queryString, [email.toLowerCase()])
-      .then((res) => {
-        return res.rows.length > 0 ? res.rows[0] : null;
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
-  };
-  exports.findUserByEmail = findUserByEmail;
-
-  // function that checks password and authenticates user based on findUserByEmail
-  const authenticateUser = (email, password) => {
-    const user = findUserByEmail(email);
-    return findUserByEmail(email).then((user) => {
-      if (!user) {
-        return null;
-      }
-      // console.log("finduserby email:", user, email, password);
-      if (bcrypt.compareSync(password, user.password)) {
-        return user;
-      }
-      return null;
-    });
-  };
-
-  exports.authenticateUser = authenticateUser;
 
   // Post request that authenticates and redirects to homepage
   router.post("/", (req, res) => {
@@ -69,7 +34,7 @@ module.exports = (db) => {
     }
 
     // start authentication process
-    authenticateUser(email, password)
+    authenticateUser(email, password, db)
       .then((user) => {
         // console.log("Here is User:", user);
 
