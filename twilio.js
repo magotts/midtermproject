@@ -4,7 +4,7 @@ const sendSms = (textMessage) => {
   const accountSid = process.env.TWILIO_ACCOUNT_SID;
   const authToken = process.env.TWILIO_AUTH_TOKEN;
   const phoneNumber = process.env.TWILIO_PHONE_NUMBER
-  const client = require('twilio')(AccountSid, AuthToken);
+  const client = require('twilio')(accountSid, authToken);
 
   return client.messages
   .create({from: '+18177569554', to: phoneNumber, body:textMessage})

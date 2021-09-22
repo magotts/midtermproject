@@ -19,6 +19,21 @@ const adminRouter = (db) => {
     })
   });
 
+  router.post('/orders/:id', (req, res) => {
+    const {estimatedTime} = req.body;
+    const id = req.params.id;
+    // add query to update db with time value
+    db.query(`SELECT * FROM orders WHERE id = $1`, [id])
+    .then((response) => {
+      // res.json(response.rows);
+      const record = response.rows[0];
+      db.query(`UPDATE orders SET estimated_time = ${estimatedTime} WHERE id=${record.id} RETURNING estimated_time`).then((response2) => {
+        console.log(response2);
+        res.json(response2);
+      })
+    });
+  });
+
   return router;
 };
 

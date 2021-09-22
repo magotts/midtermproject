@@ -53,34 +53,34 @@ $(() => {
     event.preventDefault();
     const buttonId = event.target.dataset.id;
     // $(`button[data-id=${buttonId}]`).hide();
-    $(`div[data-id=${buttonId}]`).replaceWith(`<form class='time'>
-    <label>Order Ready By</label>
-    <input type='text' name='estimatedTime' placeholder='hr:min'><button class="btn-sm btn-outline-success">Submit</button></form>`);
+    $(`div[data-id=${buttonId}]`).replaceWith(`<form method='POST' action="/admins/orders"class='preparation-time'>
+    <label>Order Ready In </label>
+    <input type='text' name='estimatedTime' placeholder='minutes'><button class="btn-sm btn-outline-success submit-time" data-id=${buttonId}>Submit</button></form>`);
     //call change status function to change the order_status once accepted
-    changeStatus(buttonId);
   });
 
+  $("form").on('submit', (event) => {
+    event.preventDefault();
+    const data = this.serialize();
+    console.log(data);
+    const orderId = event.target.dataset.id;
+
+    $.post('/admins/orders/' + orderId, data)
+    .then((response) => {
+      //response is the array of objects from db
+      console.log(response);
+
+      //pass response to the api function
+      //get the object that matches the order id of the clicked order on admins page
+      //enter the value from the text form into db under orders.estimated_time where id = orderId
+    })
+
+  });
 //when time entered in form, send num to db
   //extract orderid and form content
   //post request
   //add to db
-  (` `)
 
-
-
-  //create function to change order_status on click
-  const changeStatus = (buttonId) => {
-    $.get('/admins/data')
-    .done((response) => {
-      for(const order of response) {
-        if(order.id === buttonId) {
-          order.order_status = 'accepted';
-          //make change of status visible in document
-        }
-      }
-    })
-
-  }
 
 //when decline order button is clicked
   $(document).on("click", '.decline-order', (event) => {

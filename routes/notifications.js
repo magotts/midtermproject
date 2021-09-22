@@ -8,10 +8,13 @@ const twilioRouter = (db) => {
   router.post('/:orderId', (req, res) => {
     const id = req.params.orderId;
 
+    db.query(`SELECT order_estimation FROM orders WHERE id = ${id}`)
+    .then((response) => {
+
+    })
     //sql query to get time from db
     //save in variable
     //pass that time to sendSms function in message body
-
 
   })
 
