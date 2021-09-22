@@ -30,6 +30,7 @@ module.exports = (db) => {
     const { pizza, numberOfItems } = req.body;
     const quantity = parseInt(numberOfItems);
     const userId = req.session.user_id;
+    console.log("pizza price", pizza.price,pizza);
     // console.log("userId:", userId);
     findUserById(userId)
       .then((user) => {
@@ -50,11 +51,11 @@ module.exports = (db) => {
               qty: quantity,
             };
             cart.totalQty = cart.totalQty + quantity;
-            cart.totalPrice = cart.totalPrice + parseInt(pizza.price);
+            cart.totalPrice = cart.totalPrice + (parseInt(pizza.price)* quantity);
           } else {
             cart.items[pizza.id].qty = cart.items[pizza.id].qty + quantity;
             cart.totalQty = cart.totalQty + quantity;
-            cart.totalPrice = cart.totalPrice + parseInt(pizza.price);
+            cart.totalPrice = cart.totalPrice + (parseInt(pizza.price)* quantity);
           }
           // console.log("this is a cart:",cart.items[1853]);
           return res.status(200).json({
