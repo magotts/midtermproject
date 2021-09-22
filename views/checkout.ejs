@@ -15,6 +15,7 @@
   </head>
   <%- include('partials/_header') %>
   <body>
+
 <h2>REVIEW YOUR ORDER</h2>
 
 
@@ -39,7 +40,7 @@
             <td><span class="price"><%= foodList.item.price %></span></td>
             <td><span class="qty"><%= foodList.qty %></span></td>
             <td><span class="total"><%=  Number(foodList.item.price) * Number(foodList.qty) %></span></td>
-            <td><form method="delete"><button data-id="deleteid" id="deletebutton" value="Delete">Delete</button></form></td>
+            <td><form method="delete"><button id="deletebutton" value="Delete">Delete</button></form></td>
 
         </tr>
 <% } %>

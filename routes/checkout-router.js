@@ -49,6 +49,15 @@ const checkoutRouter = (db) => {
 
   // });
 
+  // router.delete("/", (req, res) => {
+  //   const shortURL = req.params.shortURL;
+  //   const user = users[req.session["user_id"]];
+
+  //   delete cart.items[];
+  //   res.status(200).send();
+
+  // });
+
   return router;
 
 };

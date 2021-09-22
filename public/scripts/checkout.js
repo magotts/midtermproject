@@ -6,6 +6,11 @@ $(document).ready(function() {
   });
 
 
-  // $(this).data("deleteid")
 
   });
+// delete cart.items['1436']
+  // const deleteItem = function() {
+  //  $.ajax("/checkout", { method: "GET", datatype: "JSON" }).done((data) => {
+  //   delete data.items["id"];
+  // });
+  // }
