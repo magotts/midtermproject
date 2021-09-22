@@ -44,11 +44,10 @@ VALUES
 ('1','2021-07-26 10:02:20',12,'new')
 
 
-INSERT INTO
-  order_details (foods_id, orders_id, quantity)
-VALUES
-  ('1245', '1', 60),
-  ('1436', '2', 50),
-  ('1853', '1', 30),
-  ('1935', '2', 45),
-  ('1745', '1', 12)
+-- INSERT INTO order_details (foods_id, orders_id, quantity)
+-- VALUES
+--   ('1245', '1', 60),
+--   ('1436', '2', 50),
+--   ('1853', '1', 30),
+--   ('1935', '2', 45),
+--   ('1745', '1', 12)

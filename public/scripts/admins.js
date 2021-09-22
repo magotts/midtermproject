@@ -60,6 +60,14 @@ $(() => {
     changeStatus(buttonId);
   });
 
+//when time entered in form, send num to db
+  //extract orderid and form content
+  //post request
+  //add to db
+  (` `)
+
+
+
   //create function to change order_status on click
   const changeStatus = (buttonId) => {
     $.get('/admins/data')
@@ -79,7 +87,6 @@ $(() => {
     event.preventDefault();
     const buttonId = event.target.dataset.id;
     $(`div[data-id=${buttonId}]`).replaceWith(`<p class="declined-message">Order Declined</p>`);
-    //grey out entire row
   });
 
   $("form .time").on('submit', (event) => {

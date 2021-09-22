@@ -31,7 +31,8 @@ CREATE TABLE orders (
   order_time TIMESTAMP DEFAULT NOW(),
   total_cost INTEGER,
   order_completed BOOLEAN DEFAULT FALSE,
-  order_status ord_status DEFAULT 'new'
+  order_status ord_status DEFAULT 'new',
+  order_estimation INTEGER
 );
 
 CREATE TABLE foods (
