@@ -11,7 +11,7 @@ const placeorderRouter = (db) => {
       .then((result) => {
         console.log("result row is", result.rows);
         //const templateVars = { data: result.rows, user: null };
-        res.render("ordersuccess.ejs", { user:null });
+        res.render("ordersuccess.ejs", { user: null });
       })
       .catch((err) => {
         console.log(err.message);

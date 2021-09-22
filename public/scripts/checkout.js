@@ -1,14 +1,9 @@
-console.log("hello world heyy");
+$(document).ready(function() {
 
-$(function() {
-  $('.qty').change(function() {
-      let total = 0;
 
-      $('.qty').each(function() {
-          if( $(this).val() != '' )
-              total += parseInt($(this).val());
-      });
-
-      $('.total').html(total);
+  $("#fooditems").on("click", "#deletebutton", function() {
+    $(this).closest("tr").remove();
   });
-});
+
+
+  });

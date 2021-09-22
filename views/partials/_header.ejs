@@ -23,8 +23,8 @@
           </button>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
             <li class="dropdown-item"><span id="cartPrice" class="text-white">
-              <%= session && session.cart ? session.cart.totalPrice : '' %>
-            </span></li>
+                <%= session && session.cart ? session.cart.totalPrice : '' %>
+              </span></li>
             <li class="dropdown-item">
               <form class="form-inline" action="/logout" method="POST">
                 <button type="submit" class="btn btn-outline-danger">Logout</button>
@@ -34,9 +34,12 @@
           <!-- <span id="cartQuantity" class="text-white">
 
           </span> -->
-
-          <a href="/checkout"><i class="fas fa-shopping-cart"></i></a>
-          <span class='badge badge-warning' id='cartQuantity'> <%= session && session.cart ? session.cart.totalQty: '' %> </span>
+          <a href="/checkout" class="checkout-btn">
+            <i class="fas fa-shopping-cart fa-lg"></i>
+            <span class='badge badge-warning' id='cartQuantity'>
+              <%= session && session.cart ? session.cart.totalQty: '' %>
+            </span>
+          </a>
           <% } else { %>
             <a class="nav-link" href="/login">Login</a>
             <a class="nav-link" href="/register">Register</a>

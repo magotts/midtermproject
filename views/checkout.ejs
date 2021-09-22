@@ -21,31 +21,33 @@
 
 <div class="box">
   <div class="order-summary">
-    <table class="table table-hover">
+    <table id="fooditems" class="table table-hover">
       <thead>
         <tr>
           <th scope="col">Items</th>
           <th scope="col">Price</th>
           <th scope="col">Quantity</th>
           <th scope="col">Total</th>
+          <th scope="col">Delete</th>
         </tr>
       </thead>
       <tbody>
-        <% for (let foodList of cart) { %>
+        <% for (let foodList of Object.values(cart.items)){ %>
           <tr>
-            <td><span class="items"><%= foodList.items.pizzaId.item["title"] %></span></td>
-            <td><span class="price"><%= foodList.items.pizzaId.item["price"] %></span></td>
-            <td><%= foodList.items.totalQty %></td>
-            <td><span class="total"><%= Number(foodList.items.pizzaId.item["price"]) * Number(foodList.items.totalPrice) %></span></td>
+            <td name="myTable"><span class="items"><%= foodList.item.title %></span></td>
+            <td><span class="price"><%= foodList.item.price %></span></td>
+            <td><span class="qty"><%= foodList.qty %></span></td>
+            <td><span class="total"><%= Number(foodList.item.price) * Number(foodList.qty) %></span></td>
+            <td><button id="deletebutton" value="Delete">Delete</button></td>
+
         </tr>
-        <% } %>
+<% } %>
+
+
       </tbody>
     </table>
-    <% let totalPrice = 0; %>
-    <% for (let total of cart) { %>
-    <% totalPrice += total.items.totalPrice %>
-    <% } %>
-    <span>Total Price: $<% totalPrice %></span>
+    Total Amount: $<%= cart.totalPrice %>
+
 
     <form method="POST" action="/ordersuccess">
       <button type="submit" class="btn btn-primary">Place order</button>
@@ -60,7 +62,5 @@
     Scarborough, ON<br>
   </div>
 </div>
-
-
 </body>
 </html>
