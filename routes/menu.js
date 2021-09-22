@@ -30,7 +30,6 @@ module.exports = (db) => {
     const { pizza, numberOfItems } = req.body;
     const quantity = parseInt(numberOfItems);
     const userId = req.session.user_id;
-    console.log("pizza price", pizza.price,pizza);
     // console.log("userId:", userId);
     findUserById(userId)
       .then((user) => {
@@ -85,7 +84,7 @@ module.exports = (db) => {
           .then((data) => {
             // console.log(data);
             // data.rows.forEach((e) => console.log(e));
-            console.log(data.rows, user);
+            // console.log(data.rows, user);
             const templateVars = { user, data: data.rows, session };
             res.render("menu", templateVars);
           })

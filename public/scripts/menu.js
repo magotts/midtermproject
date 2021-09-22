@@ -39,10 +39,17 @@ $(document).ready(function () {
    ---  Server adds pizza to cart session and responds with the total quantity and total price of the current session
   */
 
+  $("#order-id").on("click", function () {
+    $.post(`/order`).then((response) => {
+      $('#order-modal').modal('show')
+      $('#order-id').html(response.orderId)
+    });
+  });
+
   $(".cart-btn").on("click", function () {
     // count how many items
     const numberOfItems = parseInt($(this).siblings().find("input").val());
-    $('input').val(0);
+    $("input").val(0);
     const $cartBefore = $("#cartQuantity").html();
     console.log("cartCount", $cartBefore);
     const pizza = JSON.parse($(this).val());
