@@ -7,7 +7,7 @@ const sendSms = (textMessage) => {
   const client = require('twilio')(accountSid, authToken);
 
   return client.messages
-  .create({from: '+18177569554', to: phoneNumber, body:textMessage})
+  .create({from: '+18177569554', to: phoneNumber, body:`Your order will be ready in ${textMessage} minutes`})
   .then(message => console.log(`Message: ${message.body} sent to ${phoneNumber}`));
 
 };

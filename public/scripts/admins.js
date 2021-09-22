@@ -1,3 +1,4 @@
+// const sendSms = require('../../twilio');
 
 //document.ready
 $(() => {
@@ -26,6 +27,8 @@ $(() => {
 
              ${order.order_status === "accepted" ?
             "<form class='time'> <input type='text' name='estimatedTime'></form>" : ""}</td>
+
+
             </tr>`
 
             const $orderElement = $(tableContent) ;
@@ -53,22 +56,33 @@ $(() => {
     event.preventDefault();
     const buttonId = event.target.dataset.id;
     // $(`button[data-id=${buttonId}]`).hide();
-    $(`div[data-id=${buttonId}]`).replaceWith(`<form method='POST' action="/admins/orders"class='preparation-time'>
+    $(`div[data-id=${buttonId}]`).replaceWith(`<form data-id=${buttonId} id='order-time-${buttonId}' class='preparation-time'>
     <label>Order Ready In </label>
-    <input type='text' name='estimatedTime' placeholder='minutes'><button class="btn-sm btn-outline-success submit-time" data-id=${buttonId}>Submit</button></form>`);
+    <input type='text' name='estimatedTime' placeholder='minutes'><button class="btn-sm btn-outline-success submit-time">Submit</button></form>`);
     //call change status function to change the order_status once accepted
   });
 
-  $("form").on('submit', (event) => {
-    event.preventDefault();
-    const data = this.serialize();
-    console.log(data);
-    const orderId = event.target.dataset.id;
 
+// $(document).on('submit', '.preparation-time', function (event) {
+//   event.preventDefault();
+//   console.log('submit form 2');
+// })
+
+$(document).on('submit', '.preparation-time', function(event) {
+    console.log('form submission');
+    event.preventDefault();
+    //const data = this.serialize(); // This will cause issues because this is not defined the same with arrow
+    const data = $(this).serialize();
+    const orderId = ($(this).data('id'));
+    console.log('data:', data);
+    console.log(event.target);
+    // const orderId = event.target.dataset.id;
+    // Did you check for event that redirects for the route admin ?
     $.post('/admins/orders/' + orderId, data)
     .then((response) => {
-      //response is the array of objects from db
-      console.log(response);
+      //response is estimated_time
+      console.log('response', response);
+      // return sendSms(response);
 
       //pass response to the api function
       //get the object that matches the order id of the clicked order on admins page
@@ -76,10 +90,6 @@ $(() => {
     })
 
   });
-//when time entered in form, send num to db
-  //extract orderid and form content
-  //post request
-  //add to db
 
 
 //when decline order button is clicked
