@@ -4,6 +4,9 @@ require("dotenv").config();
 // Web server config
 const PORT = process.env.PORT || 8080;
 const ENV = process.env.ENV || "development";
+
+
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const sass = require("node-sass-middleware");
@@ -74,6 +77,7 @@ const loginRoutes = require("./routes/login");
 const menuRoutes = require("./routes/menu");
 const logoutRoutes = require("./routes/logout");
 const orderRoutes = require("./routes/order");
+const historyRoutes = require("./routes/history")
 const { render } = require("ejs");
 
 
@@ -91,6 +95,7 @@ app.use("/login", loginRoutes(db));
 app.use("/", menuRoutes(db));
 app.use("/logout", logoutRoutes());
 app.use("/order", orderRoutes(db));
+app.use("/history", historyRoutes(db));
 
 // logout
 app.post("/logout", (req, res) => {

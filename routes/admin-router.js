@@ -1,6 +1,6 @@
 const express = require('express');
 const router  = express.Router();
-const sendSms = require('../twilio');
+const sendSms = require('../public/scripts/api/twilio');
 
 const adminRouter = (db) => {
   router.get("/", (req, res) => {
@@ -39,7 +39,7 @@ const adminRouter = (db) => {
       .then((response) => {
         console.log('THIS IS THE RESPONSE:', response.rows[0].order_estimation);
         const orderIsReady = (response.rows[0].order_estimation);
-        sendSms(orderIsReady);
+        sendSms(`Your order will be ready in ${orderIsReady}minutes.`);
         res.json(response);
       })
       // .then((data) => {
