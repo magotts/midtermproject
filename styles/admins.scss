@@ -35,3 +35,13 @@ table {
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
   }
+
+  .declined-message {
+color: red;
+  }
+
+  input[type=text] {
+    width: 75px;
+    border: 2px solid gray;
+    border-radius: 10%;
+  }

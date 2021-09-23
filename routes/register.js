@@ -23,7 +23,7 @@ const registerRouter = (db) => {
     const queryString = `
       INSERT INTO users (first_name, last_name, phone_number, password, email) VALUES ($1, $2, $3, $4, $5)
       RETURNING *`;
-    const values = [first_name, last_name, phone_number, password, email];
+    const values = [first_name, last_name, phone_number, hashedPassword, email];
     return db
       .query(queryString, values)
       .then((result) => {

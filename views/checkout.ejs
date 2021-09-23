@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>FOOD ORDERING APP</title>
+
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/checkout.css" type="text/css" />
+
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/scripts/checkout.js"></script>
+      <!--Font Awesome Library-->
+  <script src="https://kit.fontawesome.com/5cdd9bd7c4.js" crossorigin="anonymous"></script>
+  </head>
+  <%- include('partials/_header') %>
+  <body>
+
+<div class="box">
+  <div class="order-summary">
+    <h2>REVIEW YOUR ORDER</h2>
+    <table id="fooditems" class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Items</th>
+          <th scope="col">Price</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% let final = 0; %>
+        <% for (let foodList of Object.values(cart.items)){ %>
+          <tr>
+            <td name="foodlist"><span class="items"><%= foodList.item.title %></span></td>
+            <td><span class="price"><%= foodList.item.price %></span></td>
+            <td><form method="POST" action="/checkout/edit/<%= foodList.item.id %>"><input name="editqty" type="number" value="<%= foodList.qty %>" />
+              <td><span class="total"><%=  Number(foodList.item.price) * Number(foodList.qty) %></span></td>
+              <td><button class="btn btn-primary btn-sm updatebutton">Update</button></form></td>
+            <!-- <td><span class="qty"><%= foodList.qty %></span></td> -->
+
+            <td><form method="POST" action="/checkout/delete/<%= foodList.item.id %>"><button id="deletebutton" value="Delete" class="btn-sm btn-danger">Remove</button></form></td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <div class="totalplaceorder">
+    <% let totalCart = 0 %>
+    <% for (let tots of Object.values(cart.items) ) { %>
+    <% totalCart += (tots.item.price * tots.qty);  %>
+    <% } %>
+
+    <a href="/">ADD MORE PIZZA!</a> &nbsp; &nbsp; &nbsp; Subtotal: $<%= totalCart %> <br>
+    Tax: $<%= (totalCart * .13).toFixed(2) %> <br>
+    <% let finalprice = (totalCart * 1.13).toFixed(2); %> <br>
+    Total: <strong>$<%= finalprice %></strong><br><br>
+    <form method="POST" action="/order"><button type="submit" id="order-id" class="btn btn-primary">Place Order</button></form>
+    </div>
+  </div>
+
+  <div class="order-summary">
+    <strong>Restaurant Pick-Up Info</strong><br>
+    Pizza Azzip<br>
+    123 Fourth Dr.<br>
+    Scarborough, ON<br>
+  </div>
+</div>
+</body>
+</html>
