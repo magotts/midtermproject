@@ -8,7 +8,6 @@ module.exports = (db) => {
     const cartObj = req.session.cart;
     // console.log(cartObj.items);
     // console.log(cartObj.totalPrice);
-
     if (userId && cartObj) {
       let totalPrice = cartObj.totalPrice;
       console.log("tots:", totalPrice);
