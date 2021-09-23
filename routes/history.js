@@ -39,7 +39,7 @@ module.exports = (db) => {
 
 
 
-                  console.log("userOrderDetails", ordersInfo);
+                  // console.log("userOrderDetails", ordersInfo);
                   const templateVars = { user: user, session, ordersInfo, timeago };
 
                   res.render("status", templateVars);
