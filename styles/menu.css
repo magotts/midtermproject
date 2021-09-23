@@ -2,12 +2,12 @@
   width: 100%;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0.5))), url("../images/bg.jpg");
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/bg.jpg");
+  background-attachment: fixed;
   background-position: center top;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
-  height: 30vh;
   color: #fff;
-  height: 20vh;
+  height: 25vh;
 }
 
 .bg-image:p {
@@ -95,10 +95,37 @@
 .checkout-btn {
   text-decoration: none;
   margin: 0 1.2rem;
+  cursor: pointer;
 }
 
 .alert {
   z-index: 1000 !important;
+}
+
+.table-image thead td,
+.table-image thead th {
+  border: 0;
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.table-image td,
+.table-image th {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table-image td.qty,
+.table-image th.qty {
+  max-width: 2rem;
+}
+
+.price {
+  margin: auto 1rem;
+}
+
+.modal-footer {
+  padding-top: 0rem;
 }
 
 @media only screen and (max-width: 1024px) {

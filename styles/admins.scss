@@ -1,7 +1,7 @@
+
 $border: solid black;
 $red-border: solid #ed7966;
 $font: 'Montserrat', sans-serif;
-
 
 
 .top-row {
@@ -35,7 +35,7 @@ table {
   color: white;
   border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 10px 6px 46px -10px rgba(255,255,255,0.13);
   background-color:#212529;
   }
 
@@ -50,8 +50,15 @@ color: red;
   }
 
   .badge-danger {
-    color: black;
+    color: white;
     background-color: #d45353;
+    width: 12em;
+    height: 2em;
+    padding-top: 10px;
+    font-family: $font;
+    font-style: italic;
+    font-weight: 600;
+    font-size: 0.8rem;
   }
 
   .badge-success {
@@ -65,7 +72,27 @@ color: red;
     align-items: center;
   }
 
-  h5 {
+  h4 {
     margin-bottom: 2em;
     margin-top: 2em;
+    color: #F8F8F8;
+
+  }
+
+  body {
+    background-color: #212529;
+    font-family: $font;
+  }
+
+  .accept-order, .decline-order {
+    border-radius: 10px;
+  }
+
+  .decline-order {
+    margin-left: 10px;
+  }
+
+  .accept-order {
+    margin-right: 10px;
+    margin-left: -20px;
   }
