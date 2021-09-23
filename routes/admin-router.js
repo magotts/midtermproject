@@ -12,7 +12,7 @@ const adminRouter = (db) => {
     findUserById(db, userId).then((user) => {
       // make sure the current user is admin
       if (user && userId && user.admin) {
-        res.status(404).render("admins.ejs", { user });
+        res.render("admins.ejs", { user });
       }
       // else render a 404 page
       else if (user && userId) {
