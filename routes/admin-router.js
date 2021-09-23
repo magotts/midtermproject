@@ -24,16 +24,17 @@ const adminRouter = (db) => {
     const {estimatedTime} = req.body;
     const id = req.params.id;
     console.log('hello world');
+    console.log('est time', estimatedTime, 'id', id)
     // add query to update db with time value
-    // db.query(`SELECT * FROM orders WHERE id = $1`, [id])
-    // .then((response) => {
-    //   // res.json(response.rows);
-    //   const record = response.rows[0];
-    //   console.log('record:', record);
+    db.query(`SELECT * FROM orders WHERE id = $1`, [id])
+    .then((response) => {
+      // res.json(response.rows);
+      const record = response.rows[0];
+      console.log('record:', record);
       db.query(`UPDATE orders
       SET order_estimation = ${estimatedTime},
       order_status = 'accepted'
-      WHERE id=${estimatedTime}
+      WHERE id=${id}
       RETURNING order_estimation`)
       .then((response) => {
         console.log('THIS IS THE RESPONSE:', response.rows[0].order_estimation);
@@ -43,7 +44,7 @@ const adminRouter = (db) => {
       .then((data) => {
         res.json(data);
       })
-    // });
+    });
   });
 
 

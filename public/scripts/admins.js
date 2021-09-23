@@ -60,7 +60,6 @@ $(() => {
     $(`div[data-id=${buttonId}]`).replaceWith(`<form data-id=${buttonId} id='order-time-${buttonId}' class='preparation-time'>
     <label>Order Ready In </label>
     <input type='text' name='estimatedTime' placeholder='minutes'><button class="btn-sm btn-outline-success submit-time">Submit</button></form>`);
-    //call change status function to change the order_status once accepted
   });
 
 
@@ -75,10 +74,11 @@ $(document).on('submit', '.preparation-time', function(event) {
     //const data = this.serialize(); // This will cause issues because this is not defined the same with arrow
     const data = $(this).serialize();
     const orderId = ($(this).data('id'));
-    console.log('data:', data);
+    console.log('data:', data, 'orderid', orderId);
 
     $.post('/admins/orders/' + orderId, data)
     .then((response) => {
+      console.log('new con log', response)
       //response is estimated_time
       const duration = (response.rows[0].order_estimation);
       // return duration;
