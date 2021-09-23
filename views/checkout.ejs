@@ -17,11 +17,9 @@
   <%- include('partials/_header') %>
   <body>
 
-<h2>REVIEW YOUR ORDER</h2>
-
-
 <div class="box">
   <div class="order-summary">
+    <h2>REVIEW YOUR ORDER</h2>
     <table id="fooditems" class="table table-hover">
       <thead>
         <tr>
@@ -29,13 +27,11 @@
           <th scope="col">Price</th>
           <th scope="col">Quantity</th>
           <th scope="col">Total</th>
-
         </tr>
       </thead>
       <tbody>
         <% let final = 0; %>
         <% for (let foodList of Object.values(cart.items)){ %>
-
           <tr>
             <td name="foodlist"><span class="items"><%= foodList.item.title %></span></td>
             <td><span class="price"><%= foodList.item.price %></span></td>
@@ -45,13 +41,8 @@
             <!-- <td><span class="qty"><%= foodList.qty %></span></td> -->
 
             <td><form method="POST" action="/checkout/delete/<%= foodList.item.id %>"><button id="deletebutton" value="Delete" class="btn-sm btn-danger">Remove</button></form></td>
-
-
-
         </tr>
-<% } %>
-
-
+        <% } %>
       </tbody>
     </table>
     <div class="totalplaceorder">
@@ -64,11 +55,10 @@
     Tax: $<%= (totalCart * .13).toFixed(2) %> <br>
     <% let finalprice = (totalCart * 1.13).toFixed(2); %> <br>
     Total: <strong>$<%= finalprice %></strong><br>
-<br>
+    <br>
     <form method="POST" action="/order"><button type="submit" id="order-id" class="btn btn-primary">Place Order</button>
     </form>
-  </div>
-
+    </div>
   </div>
   <div class="order-summary">
     <strong>Restaurant Pick-Up Info</strong><br>
