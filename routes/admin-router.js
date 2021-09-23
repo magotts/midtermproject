@@ -40,10 +40,11 @@ const adminRouter = (db) => {
         console.log('THIS IS THE RESPONSE:', response.rows[0].order_estimation);
         const orderIsReady = (response.rows[0].order_estimation);
         sendSms(orderIsReady);
+        res.json(response);
       })
-      .then((data) => {
-        res.json(data);
-      })
+      // .then((data) => {
+      //   res.json(data);
+      // })
     });
   });
 
