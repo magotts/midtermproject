@@ -3,7 +3,7 @@
 h2 {
   text-align:center;
   color: green;
-  padding-top: 2em;
+  padding-top: 10px;
 }
 
 .mainbox {
@@ -20,6 +20,12 @@ h2 {
   width: 70%;
   margin-left: 14em;
   margin-right: 14em;
+  margin-top: 3em;
+  margin-bottom: 5em;
+
+  //position: absolute; z-index: 1;
+
+    background: white; opacity: 0.94;
 }
 
 .order-summary {
@@ -32,7 +38,8 @@ h2 {
 .order-success {
   background-color: white;
   color: black;
-  padding-top:4em;
+  padding-top: 4em;
+  padding-bottom: 4em;
 
 }
 
@@ -60,4 +67,7 @@ input {
   text-align:end;
 }
 
+body {
+  background-image: url("https://as1.ftcdn.net/v2/jpg/04/08/51/78/1000_F_408517872_u7m4me8l83eenmUcsJ1ArSZymm5Unz4X.jpg");
+}
 
