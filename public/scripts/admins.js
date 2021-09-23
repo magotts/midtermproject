@@ -25,7 +25,9 @@ $(() => {
             <td> ${order.order_status === "new" ? "<div class='admin-button-container' data-id=" + order.id + "><button class='btn-success accept-order' data-id=" + order.id + ">ACCEPT</button> <button class='btn-danger decline-order' data-id=" + order.id + ">DECLINE</button></div>" : ""}
 
              ${order.order_status === "accepted" ?
-            "<p>Order In Progress</p> <button class='btn btn-sm btn-outline-info'>Complete Order</button>" : ""}</td>
+            "<p>Order In Progress</p> <button class='btn btn-sm btn-outline-info' data-id=" + order.id + ">Complete Order</button>" : ""}
+
+            ${order.order_status === "declined" ? "<span class='badge badge-pill badge-danger'>Order Declined</span>" : "" } </td>
 
 
             </tr>`
@@ -80,7 +82,7 @@ $(document).on('submit', '.preparation-time', function(event) {
       //response is estimated_time
       const duration = (response.rows[0].order_estimation);
       // return duration;
-
+      loadOrders();
     })
 
   });
@@ -90,11 +92,11 @@ $(document).on('submit', '.preparation-time', function(event) {
   $(document).on("click", '.decline-order', (event) => {
     event.preventDefault();
     const buttonId = event.target.dataset.id;
-    $(`div[data-id=${buttonId}]`).replaceWith(`<p class="declined-message">Order Declined</p>`);
+    $(`div[data-id=${buttonId}]`).replaceWith(`<span class="badge badge-pill badge-danger">Order Declined</span>`);
 
     $.post('/admins/del/' + buttonId)
-    .then((response) => {
-      loadOrders();
+    .then(() => {
+        loadOrders();
     })
   });
 
