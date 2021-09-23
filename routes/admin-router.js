@@ -141,6 +141,7 @@ const adminRouter = (db) => {
         db.query(
           `UPDATE orders SET order_status = 'declined' WHERE id=${orderId} RETURNING order_status`
         ).then((response) => {
+          sendSms(`We're sorry ${user.first_name}, unfortunately the restaurant has declined your order.`);
           res.json(response);
         });
       }
@@ -170,10 +171,12 @@ const adminRouter = (db) => {
     const orderId = req.params.id;
 
     findUserById(db, userId).then((user) => {
+
       if (user.admin) {
         db.query(
           `UPDATE orders SET order_status = 'completed' WHERE id=${orderId} RETURNING order_status`
         ).then((response) => {
+          sendSms(`Thank you for your order ${user.first_name}, please enjoy your food!`);
           res.json(response);
         });
       }
