@@ -54,12 +54,11 @@
     <a href="/">ADD MORE PIZZA!</a> &nbsp; &nbsp; &nbsp; Subtotal: $<%= totalCart %> <br>
     Tax: $<%= (totalCart * .13).toFixed(2) %> <br>
     <% let finalprice = (totalCart * 1.13).toFixed(2); %> <br>
-    Total: <strong>$<%= finalprice %></strong><br>
-    <br>
-    <form method="POST" action="/order"><button type="submit" id="order-id" class="btn btn-primary">Place Order</button>
-    </form>
+    Total: <strong>$<%= finalprice %></strong><br><br>
+    <form method="POST" action="/order"><button type="submit" id="order-id" class="btn btn-primary">Place Order</button></form>
     </div>
   </div>
+
   <div class="order-summary">
     <strong>Restaurant Pick-Up Info</strong><br>
     Pizza Azzip<br>
