@@ -119,13 +119,6 @@ app.get("/menu", (req, res) => {
   res.render("menu");
 });
 
-// app.post("/admins", (req, res) => {
-//   const password = req.body.admin;
-//   if (password === "secretpassword") {
-//     res.redirect("/admins-dashboard");
-//   }
-// });
-
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

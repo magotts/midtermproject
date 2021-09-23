@@ -85,20 +85,13 @@ module.exports = (db) => {
         req.session.user_id = user.id;
 
         //admin login
-        if (password === "secretpassword") {
-            res.redirect("/admins-dashboard");
+        if (req.session.user_id && user.admin === true) {
+            return res.redirect("/admins");
           }
-
 
         if (req.session.user_id) {
           res.redirect("/");
         }
-
-        // --- FOR admin ---
-
-        // if (req.session.user_id && user.admin === true ) {
-        //   IMPLEMENT ADMIN FUNCTIONALITY
-        // }
 
         // ---- TO SEND ANY OF THE AUTHENTICATED USER'S INFO ANYWHERE ----
         // res.send({ user: { name: user.name, email: user.email, id: user.id } });
