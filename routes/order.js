@@ -57,9 +57,10 @@ module.exports = (db) => {
     }
   });
 
-  router.get('/', (req,res)=>{
 
-    text()
+  router.post('/cart', (req,res)=>{
+
+    text('message')
     console.log('success');
 
   })

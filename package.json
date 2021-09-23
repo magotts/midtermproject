@@ -25,6 +25,7 @@
     "node-sass-middleware": "^0.11.0",
     "pg": "^8.5.0",
     "pg-native": "^3.0.0",
+    "timeago.js": "^4.0.2",
     "twilio": "^3.67.2"
   },
   "devDependencies": {

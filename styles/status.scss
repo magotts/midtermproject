@@ -1,0 +1,109 @@
+@import './variables';
+
+
+
+#order-heading {
+    background-color: $primary;
+    position: relative;
+    border-top-left-radius: 25px;
+    max-width: 800px;
+    padding-top: 20px;
+    margin: 30px auto 0px
+}
+
+#order-heading .text-uppercase {
+    font-size: 0.9rem;
+    color: #0e1f44;
+    font-weight: 600
+}
+
+#order-heading .h4 {
+    font-weight: 600
+}
+
+#order-heading .h4+div p {
+    font-size: 0.8rem;
+    color: #0e1f44;
+}
+
+.wrapper {
+    padding: 0px 50px 50px;
+    max-width: 800px;
+    margin: 0px auto 40px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px
+}
+
+.table th {
+    border-top: none
+}
+
+.table thead tr.text-uppercase th {
+    font-size: 0.8rem;
+    padding-left: 0px;
+    padding-right: 0px
+}
+
+.table tbody tr th,
+.table tbody tr td {
+    font-size: 0.9rem;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 5px
+}
+
+.table-responsive {
+    height: 100px
+}
+
+.list div b {
+    font-size: 0.8rem
+}
+
+.list .order-item {
+    font-weight: 600;
+    color: $dark
+}
+
+.list:hover {
+    background-color: #f4f4f4;
+    cursor: pointer;
+    border-radius: 5px
+}
+
+label {
+    margin-bottom: 0;
+    padding: 0;
+    font-weight: 900
+}
+
+.price {
+    color: $primary;
+    font-weight: 700
+}
+
+p.text-justify {
+    font-size: 0.9rem;
+    margin: 0
+}
+
+
+
+
+@media(max-width: 425px) {
+    .wrapper {
+        padding: 20px
+    }
+
+    body {
+        font-size: 0.85rem
+    }
+
+    .subscriptions div {
+        padding-left: 5px
+    }
+
+    img+label {
+        font-size: 0.75rem
+    }
+}
