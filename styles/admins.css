@@ -3,17 +3,18 @@
   font-weight: 600;
   font-style: italic;
   border: solid black;
-  background-color: #db5f5f;
+  color: #212529;
+  background-color: #ed7966;
 }
 
 #order-container tr {
   padding: 20px;
-  border-bottom: 1px solid #db5f5f;
+  border-bottom: 1px solid #ed7966;
   font-weight: 400;
 }
 
 #order-container tr:hover {
-  background-color: #f3f3f3;
+  background-color: #655f5f;
 }
 
 .orderDisplay {
@@ -25,10 +26,12 @@ table {
   border: solid black;
   text-align: center;
   font-family: "Montserrat", sans-serif;
-  border-radius: 5px 5px 0 0;
+  color: white;
+  border-radius: 15px;
   overflow: hidden;
   -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
           box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  background-color: #212529;
 }
 
 .declined-message {
@@ -39,5 +42,33 @@ input[type=text] {
   width: 75px;
   border: 2px solid gray;
   border-radius: 10%;
+}
+
+.badge-danger {
+  color: black;
+  background-color: #d45353;
+}
+
+.badge-success {
+  color: black;
+  background-color: green;
+}
+
+main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+h5 {
+  margin-bottom: 2em;
+  margin-top: 2em;
 }
 /*# sourceMappingURL=admins.css.map */

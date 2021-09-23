@@ -25,7 +25,12 @@ $(() => {
             <td> ${order.order_status === "new" ? "<div class='admin-button-container' data-id=" + order.id + "><button class='btn-success accept-order' data-id=" + order.id + ">ACCEPT</button> <button class='btn-danger decline-order' data-id=" + order.id + ">DECLINE</button></div>" : ""}
 
              ${order.order_status === "accepted" ?
-            "<form class='time'> <input type='text' name='estimatedTime'></form>" : ""}</td>
+            "<p>Order In Progress</p> <button class='btn btn-sm btn-outline-info complete-order' data-id=" + order.id + ">Complete Order</button>" : ""}
+
+            ${order.order_status === "declined" ? "<span class='badge badge-pill badge-danger'>Order Declined</span>" : "" }
+
+            ${order.order_status === "completed" ? "<span class='badge badge-pill badge-success'>Order Completed</span>" : "" } </td>
+
             </tr>`
 
             const $orderElement = $(tableContent) ;
@@ -53,47 +58,69 @@ $(() => {
     event.preventDefault();
     const buttonId = event.target.dataset.id;
     // $(`button[data-id=${buttonId}]`).hide();
-    $(`div[data-id=${buttonId}]`).replaceWith(`<form class='time'>
-    <label>Order Ready By</label>
-    <input type='text' name='estimatedTime' placeholder='hr:min'><button class="btn-sm btn-outline-success">Submit</button></form>`);
-    //call change status function to change the order_status once accepted
-    changeStatus(buttonId);
+    $(`div[data-id=${buttonId}]`).replaceWith(`<form data-id=${buttonId} id='order-time-${buttonId}' class='preparation-time'>
+    <label>Order Ready In </label>
+    <input type='text' name='estimatedTime' placeholder='minutes'><button class="btn-sm btn-outline-success submit-time">Submit</button></form>`);
   });
 
-  //create function to change order_status on click
-  const changeStatus = (buttonId) => {
-    $.get('/admins/data')
-    .done((response) => {
-      for(const order of response) {
-        if(order.id === buttonId) {
-          order.order_status = 'accepted';
-          //make change of status visible in document
-        }
-      }
+
+// $(document).on('submit', '.preparation-time', function (event) {
+//   event.preventDefault();
+//   console.log('submit form 2');
+// })
+
+$(document).on('submit', '.preparation-time', function(event) {
+    console.log('form submission');
+    event.preventDefault();
+    //const data = this.serialize(); // This will cause issues because this is not defined the same with arrow
+    const data = $(this).serialize();
+    const orderId = ($(this).data('id'));
+    console.log('data:', data, 'orderid', orderId);
+
+    $.post('/admins/orders/' + orderId, data)
+    .then((response) => {
+      console.log('new con log', response)
+      //response is estimated_time
+      const duration = (response.rows[0].order_estimation);
+      // return duration;
+      loadOrders();
     })
 
-  }
+  });
+
 
 //when decline order button is clicked
   $(document).on("click", '.decline-order', (event) => {
     event.preventDefault();
     const buttonId = event.target.dataset.id;
-    $(`div[data-id=${buttonId}]`).replaceWith(`<p class="declined-message">Order Declined</p>`);
-    //grey out entire row
+    $(`div[data-id=${buttonId}]`).replaceWith(`<span class="badge badge-pill badge-danger">Order Declined</span>`);
+
+    $.post('/admins/del/' + buttonId)
+    .then(() => {
+        loadOrders();
+    })
   });
 
-  $("form .time").on('submit', (event) => {
+
+  $(document).on('click', '.complete-order', function(event) {
     event.preventDefault();
 
-    const $time = $this.serialize();
+    $(event.target).replaceWith(`<span class="badge badge-pill badge-success">Order Completed</span>`);
 
-    console.log($time);
-    // $.post("/admins", $time).then(() => { });
-  // send form data to API to be sent to client as SMS
+    const buttonId = event.target.dataset.id;
 
-    });
+    $.post('/admins/complete/' + buttonId)
+    .then(() => {
+        loadOrders();
+    })
+
+  });
 
 
     loadOrders();
+
+    // setInterval(() => {
+    //   loadOrders()
+    // }, 5000);
 
 });

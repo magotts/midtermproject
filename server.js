@@ -14,6 +14,7 @@ const app = express();
 const morgan = require("morgan");
 // const bcrypt = require("bcryptjs");
 const cookieSession = require("cookie-session");
+// const twilio = require('twilio');
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -67,6 +68,10 @@ const placeorderRouter = require('./routes/placeorder-router');
 const adminRouter = require("./routes/admin-router");
 app.use("/admins", adminRouter(db));
 
+//Twilio Routes
+// const twilioRouter = require("./routes/notifications.js");
+// app.use("/admins", twilioRouter(db));
+
 // login routes
 const loginRoutes = require("./routes/login");
 const menuRoutes = require("./routes/menu");
@@ -117,13 +122,6 @@ app.get("/ordersuccess", (req, res) => {
 
 app.get("/menu", (req, res) => {
   res.render("menu");
-});
-
-app.post("/admins", (req, res) => {
-  const password = req.body.admin;
-  if (password === "secretpassword") {
-    res.redirect("/admins-dashboard");
-  }
 });
 
 
