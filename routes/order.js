@@ -46,7 +46,7 @@ module.exports = (db) => {
           req.session.cart = null;
 
           // sending this to menu js to be handled through ajax
-          res.status(200).json({orderId: orderId.id})
+          res.status(200).redirect("ordersuccess");
         })
         .catch((err) => {
           res.send(err.message);

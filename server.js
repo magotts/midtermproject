@@ -58,6 +58,9 @@ app.use(
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 
+const registerRouter = require('./routes/register');
+const checkoutRouter = require('./routes/checkout-router');
+const placeorderRouter = require('./routes/placeorder-router');
 //admin routes
 const adminRouter = require("./routes/admin-router");
 app.use("/admins", adminRouter(db));
@@ -73,13 +76,14 @@ const logoutRoutes = require("./routes/logout");
 const orderRoutes = require("./routes/order");
 const { render } = require("ejs");
 
-const registerRouter = require("./routes/register");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
 app.use("/register", registerRouter(db));
+app.use("/checkout", checkoutRouter(db));
+app.use("/ordersuccess", placeorderRouter(db));
 // Note: mount other resources here, using the same pattern above
 
 // login use
@@ -104,12 +108,22 @@ app.get("/register", (req, res) => {
   res.render("register", { user: null });
 });
 
+app.get("/ordersuccess", (req, res) => {
+  res.render("ordersuccess", {user: null});
+});
+
+
+app.get("/menu", (req, res) => {
+  res.render("menu");
+});
+
 app.post("/admins", (req, res) => {
   const password = req.body.admin;
   if (password === "secretpassword") {
     res.redirect("/admins-dashboard");
   }
 });
+
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

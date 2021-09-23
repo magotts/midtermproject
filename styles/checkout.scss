@@ -1,0 +1,44 @@
+@import "./variables";
+
+h2 {
+  text-align:center;
+  color: green;
+}
+
+.mainbox {
+  width: fit-content;
+}
+
+.box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.order-summary {
+  display: inline-block;
+  text-align:center;
+  padding: 15px;
+  margin: 25px;
+}
+
+.order-success {
+  background-color: white;
+  text-decoration-color: black;
+}
+
+.checkout-btn{
+  text-decoration: none;
+  margin: 0 1.2rem;
+  color: white;
+}
+
+#cartQuantity {
+  font-size: 15px;
+  background: $hover;
+  color: #fff;
+  padding: 0 5px;
+  vertical-align: top;
+  margin-left: -10px;
+}

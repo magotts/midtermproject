@@ -39,7 +39,7 @@ $(document).ready(function () {
    ---  Server adds pizza to cart session and responds with the total quantity and total price of the current session
   */
 
-  $("#order-button").on("click", function () {
+  $("#order-id").on("click", function () {
     $.post(`/order`).then((response) => {
       $('#order-modal').modal('show')
       $('#order-id').html(response.orderId)

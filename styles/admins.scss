@@ -1,5 +1,5 @@
 $border: solid black;
-$red-border: solid #db5f5f;
+$red-border: solid #ed7966;
 $font: 'Montserrat', sans-serif;
 
 
@@ -9,7 +9,8 @@ $font: 'Montserrat', sans-serif;
   font-weight: 600;
   font-style: italic;
   border: $border;
-  background-color: #db5f5f;
+  color: #212529;
+  background-color: #ed7966;
 }
 
 #order-container tr{
@@ -19,7 +20,7 @@ $font: 'Montserrat', sans-serif;
 }
 
 #order-container tr:hover {
-  background-color: #f3f3f3;
+  background-color: #655f5f;
 }
 
 .orderDisplay {
@@ -31,9 +32,11 @@ table {
   border: $border;
   text-align: center;
   font-family: $font;
-  border-radius: 5px 5px 0 0;
+  color: white;
+  border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
+  background-color:#212529;
   }
 
   .declined-message {
@@ -54,4 +57,15 @@ color: red;
   .badge-success {
     color: black;
     background-color: green;
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h5 {
+    margin-bottom: 2em;
+    margin-top: 2em;
   }

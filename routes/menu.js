@@ -42,7 +42,7 @@ module.exports = (db) => {
             };
           }
           let cart = req.session.cart;
-          // console.log(cart);
+           console.log("session cart", cart);
 
           if (!cart.items[pizza.id]) {
             cart.items[pizza.id] = {
