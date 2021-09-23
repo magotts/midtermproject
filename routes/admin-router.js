@@ -141,8 +141,13 @@ const adminRouter = (db) => {
         db.query(
           `UPDATE orders SET order_status = 'declined' WHERE id=${orderId} RETURNING order_status`
         ).then((response) => {
-          sendSms(`We're sorry ${user.first_name}, unfortunately the restaurant has declined your order.`);
-          res.json(response);
+
+          db.query(`SELECT first_name from users JOIN orders ON orders.user_id = users.id WHERE orders.id = ${orderId} `).then((result) =>{
+            const name = result.rows[0].first_name;
+
+            sendSms(`We're sorry ${name}, unfortunately the restaurant has declined your order.`);
+            res.json(result);
+          })
         });
       }
       // else render a 404 page
@@ -176,8 +181,12 @@ const adminRouter = (db) => {
         db.query(
           `UPDATE orders SET order_status = 'completed' WHERE id=${orderId} RETURNING order_status`
         ).then((response) => {
-          sendSms(`Thank you for your order ${user.first_name}, please enjoy your food!`);
-          res.json(response);
+
+          db.query(`SELECT first_name from users JOIN orders ON orders.user_id = users.id WHERE orders.id = ${orderId} `).then((result) => {
+            const name = result.rows[0].first_name;
+            sendSms(`Thank you for your order ${name}, please enjoy your food!`);
+            res.json(result);
+          })
         });
       }
       // else render a 404 page
