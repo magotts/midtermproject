@@ -10,7 +10,6 @@ module.exports = (db) => {
     const cartObj = req.session.cart;
     // console.log(cartObj.items);
     // console.log(cartObj.totalPrice);
-
     if (userId && cartObj) {
       let totalPrice = cartObj.totalPrice;
       console.log("tots:", totalPrice);
@@ -45,7 +44,7 @@ module.exports = (db) => {
             console.log(user);
 
             sms(
-              `Hi ${user.first_name}! Good news, your order was successfly placed. Your order number is: ${orderId.id}`
+              `Hi ${user.first_name}! Good news, your order was successfully placed. Your order number is: ${orderId.id}`
             );
 
             req.session.cart = null;

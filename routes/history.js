@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const router = express.Router();
-const timeago = require('timeago.js');
+const timeago = require("timeago.js");
 
 // Secure authentication
 const bcrypt = require("bcryptjs");
@@ -36,11 +36,13 @@ module.exports = (db) => {
             getUsersOrderStatus(db, user.id)
               .then((ordersInfo) => {
                 if (user.id === userId) {
-
-
-
                   // console.log("userOrderDetails", ordersInfo);
-                  const templateVars = { user: user, session, ordersInfo, timeago };
+                  const templateVars = {
+                    user: user,
+                    session,
+                    ordersInfo,
+                    timeago,
+                  };
 
                   res.render("status", templateVars);
                 }
