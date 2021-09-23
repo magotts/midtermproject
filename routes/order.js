@@ -44,7 +44,7 @@ module.exports = (db) => {
             console.log(user);
 
             sms(
-              `Hi ${user.first_name}! Good news, your order was successfly placed. Your order number is: ${orderId.id}`
+              `Hi ${user.first_name}! Good news, your order was successfully placed. Your order number is: ${orderId.id}`
             );
 
             req.session.cart = null;
