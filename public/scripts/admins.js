@@ -25,7 +25,7 @@ $(() => {
             <td> ${order.order_status === "new" ? "<div class='admin-button-container' data-id=" + order.id + "><button class='btn-success accept-order' data-id=" + order.id + ">ACCEPT</button> <button class='btn-danger decline-order' data-id=" + order.id + ">DECLINE</button></div>" : ""}
 
              ${order.order_status === "accepted" ?
-            "<p>Order In Progress</p> <button class='btn btn-sm btn-outline-info' data-id=" + order.id + ">Complete Order</button>" : ""}
+            "<p>Order In Progress</p> <button class='btn btn-sm btn-outline-info complete-order' data-id=" + order.id + ">Complete Order</button>" : ""}
 
             ${order.order_status === "declined" ? "<span class='badge badge-pill badge-danger'>Order Declined</span>" : "" } </td>
 
@@ -98,6 +98,14 @@ $(document).on('submit', '.preparation-time', function(event) {
     .then(() => {
         loadOrders();
     })
+  });
+
+
+  $(document).on('click', '.complete-order', function(event) {
+    event.preventDefault();
+
+    $(event.target).replaceWith(`<span class="badge badge-pill badge-success">Order Completed</span>`)
+
   });
 
 
