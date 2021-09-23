@@ -3,25 +3,9 @@ const app = express();
 const router = express.Router();
 // Secure authentication
 const bcrypt = require("bcryptjs");
+const { findUserById } = require("../lib/helper_functions");
 
 module.exports = (db) => {
-  // function to help get user by ID
-  const findUserById = function (userId) {
-    const queryString = `
-    SELECT * FROM users WHERE id = $1
-    `;
-
-    return db
-      .query(queryString, [userId])
-      .then((res) => {
-        return res.rows.length > 0 ? res.rows[0] : null;
-      })
-      .catch((err) => {
-        res.status(500).json({ error: err.message });
-      });
-  };
-  exports.findUserById = findUserById;
-
   // Update cart for when a user adds items to their cart /PIZZA/:id
   // req.session is then updated with new cart information
   // returns quantity and price to be used in the navbar
@@ -31,7 +15,7 @@ module.exports = (db) => {
     const quantity = parseInt(numberOfItems);
     const userId = req.session.user_id;
     // console.log("userId:", userId);
-    findUserById(userId)
+    findUserById(db, userId)
       .then((user) => {
         if (user && userId) {
           if (!req.session.cart) {
@@ -42,7 +26,7 @@ module.exports = (db) => {
             };
           }
           let cart = req.session.cart;
-           console.log("session cart", cart);
+          //  console.log("session cart", cart);
 
           if (!cart.items[pizza.id]) {
             cart.items[pizza.id] = {
@@ -50,11 +34,13 @@ module.exports = (db) => {
               qty: quantity,
             };
             cart.totalQty = cart.totalQty + quantity;
-            cart.totalPrice = cart.totalPrice + (parseInt(pizza.price)* quantity);
+            cart.totalPrice =
+              cart.totalPrice + parseInt(pizza.price) * quantity;
           } else {
             cart.items[pizza.id].qty = cart.items[pizza.id].qty + quantity;
             cart.totalQty = cart.totalQty + quantity;
-            cart.totalPrice = cart.totalPrice + (parseInt(pizza.price)* quantity);
+            cart.totalPrice =
+              cart.totalPrice + parseInt(pizza.price) * quantity;
           }
           // console.log("this is a cart:",cart.items[1853]);
           return res.status(200).json({
@@ -73,7 +59,7 @@ module.exports = (db) => {
     const session = req.session;
     // console.log(session);
 
-    findUserById(userId)
+    findUserById(db, userId)
       .then((user) => {
         // get menu items from the db
         const queryText = {
@@ -85,6 +71,7 @@ module.exports = (db) => {
             // console.log(data);
             // data.rows.forEach((e) => console.log(e));
             // console.log(data.rows, user);
+
             const templateVars = { user, data: data.rows, session };
             res.render("menu", templateVars);
           })
