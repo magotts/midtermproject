@@ -83,6 +83,13 @@ module.exports = (db) => {
           return;
         }
         req.session.user_id = user.id;
+
+        //admin login
+        if (password === "secretpassword") {
+            res.redirect("/admins-dashboard");
+          }
+
+
         if (req.session.user_id) {
           res.redirect("/");
         }
