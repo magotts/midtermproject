@@ -33,14 +33,9 @@ $(document).ready(function () {
     }
   });
 
-  /*
-   --- Post request for cart button.
-   ---  When user, clicks on Add to Cart, the object pizza data is sent to /pizza/id-of-current-pizza
-   ---  Server adds pizza to cart session and responds with the total quantity and total price of the current session
-  */
 
-   const modalElement = function (pizza){
 
+  const modalElement = function (pizza) {
     return `<div class="modal-body">
     <table class="table table-image">
       <thead>
@@ -66,13 +61,16 @@ $(document).ready(function () {
         </tr>
       </tbody>
     </table>
+  </div>`;
+  };
 
-  </div>`
 
+    /*
+   --- Post request for cart button.
+   ---  When user, clicks on the cart, post request is sent to order/cart which responds with an req.session.cart.
+  */
 
-   }
-
-  $("#order-button").on("click", function (e) {
+  $("#order-button").on("click", function () {
     $.post(`/order/cart`).then((response) => {
       $("#order-modal").modal("show");
       // $('#order-id').html(response.cart)
@@ -80,26 +78,21 @@ $(document).ready(function () {
       console.log(response.cartObj.items);
       // $("#modalBody").html("");
       $.each(Object.values(response.cartObj.items), function (index, pizza) {
-        e.stopPropagation();
         console.log(pizza.qty);
         const $modal = modalElement(pizza);
         $("#modalBody").append($modal);
         console.log(pizza.item);
       });
-
-      // for (let pizza of Object.values(response.cartObj.items)) {
-      //   console.log(pizza.item);
-      //   $('#order-id').html(pizza.item.title)
-      //   $.each(function(){
-      //     console.log('something');
-      //     const title = pizza.item.title
-      //     $('#modalBody').append(`${title}`)
-      //   })
-
-      // }
     });
   });
 
+  // Empties the modal when someone closes it
+  $("#order-modal").on("hidden.bs.modal", function () {
+    $("#modalBody").empty();
+  });
+
+
+  // Handles "Add to Cart" button and the counter incrementsw
   $(".cart-btn").on("click", function () {
     // count how many items
     const numberOfItems = parseInt($(this).siblings().find("input").val());
