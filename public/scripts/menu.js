@@ -103,10 +103,8 @@ $(document).ready(function () {
       .then((response) => {
         $("#cartQuantity").empty().html(response.totalQty);
         $("#cartPrice").html(`Running total is $${response.totalPrice}`);
-
         // check if there is an increment in the cart quantity and alert whether  item was added or not
         const $cartAfter = $("#cartQuantity").html();
-
         console.log("cartCount", $cartAfter);
         if ($cartAfter > $cartBefore) {
           $(".alert-success").show();

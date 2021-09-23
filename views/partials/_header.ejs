@@ -51,11 +51,6 @@
             <%= user.email %>
           </button>
           <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
-            <li class="dropdown-item"><span id="cartPrice" class="text-white">
-                <%= session && session.cart ? session.cart.totalPrice : '' %>
-              </span>
-            </li>
-
             <li class="dropdown-item">
             <li><a class="dropdown-item" href="/history">Check history</a></li>
 
@@ -66,9 +61,6 @@
               </form>
             </li>
           </ul>
-          <!-- <span id="cartQuantity" class="text-white">
-
-          </span> -->
           <a id="order-button"  class="checkout-btn">
             <i class="fas fa-shopping-cart fa-lg"></i>
             <span class='badge badge-warning' id='cartQuantity'>

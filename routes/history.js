@@ -13,13 +13,13 @@ const {
 } = require("../lib/helper_functions");
 const order = require("./order");
 
+// Gets all orders made by current user
 module.exports = (db) => {
   // -- GET route for login ---
 
   router.get("/", (req, res) => {
     const userId = req.session.user_id || "";
     const session = req.session;
-    console.log("userId:", userId);
 
     findUserById(db, userId)
       .then((user) => {

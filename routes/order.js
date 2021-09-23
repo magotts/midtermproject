@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const router = express.Router();
-const text = require("../public/scripts/api/send_sms");
+const sms = require("../public/scripts/api/twilio");
 
 module.exports = (db) => {
   router.post("/", (req, res) => {
@@ -41,6 +41,8 @@ module.exports = (db) => {
           db.query(text).catch((err) => {
             res.status(500).json({ error: err.message });
           });
+
+          sms(`Hi,  Order was placed successfully, your order number is: ${orderId.id}`)
 
 
 
