@@ -59,10 +59,13 @@ module.exports = (db) => {
 
 
   router.post('/cart', (req,res)=>{
+    const userId = req.session.user_id || "";
+    const cartObj = req.session.cart;
 
-    text('message')
-    console.log('success');
-
+    if(!cartObj){
+      return res.json({error: 'cart is empty'})
+    }
+    res.status(200).json({cartObj})
   })
 
   return router;

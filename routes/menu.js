@@ -71,6 +71,7 @@ module.exports = (db) => {
             // console.log(data);
             // data.rows.forEach((e) => console.log(e));
             // console.log(data.rows, user);
+
             const templateVars = { user, data: data.rows, session };
             res.render("menu", templateVars);
           })
