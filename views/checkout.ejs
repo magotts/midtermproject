@@ -35,8 +35,8 @@
           <tr>
             <td name="foodlist"><span class="items"><%= foodList.item.title %></span></td>
             <td><span class="price"><%= foodList.item.price %></span></td>
-            <td><form method="POST" action="/checkout/edit/<%= foodList.item.id %>"><input name="editqty" type="number" value="<%= foodList.qty %>" />
-              <td><span class="total"><%=  Number(foodList.item.price) * Number(foodList.qty) %></span></td>
+            <td><form method="POST" action="/checkout/edit/<%= foodList.item.id %>"><input name="editqty" type="number" value="<%= Number(foodList.qty) %>" />
+              <td><%=  Number(foodList.item.price) * Number(foodList.qty) %></td>
               <td><button class="btn btn-primary btn-sm updatebutton">Update</button></form></td>
             <!-- <td><span class="qty"><%= foodList.qty %></span></td> -->
 
@@ -46,12 +46,10 @@
       </tbody>
     </table>
     <div class="totalplaceorder">
-    <% let totalCart = 0 %>
-    <% for (let tots of Object.values(cart.items) ) { %>
-    <% totalCart += (tots.item.price * tots.qty);  %>
-    <% } %>
 
-    <a href="/">ADD MORE PIZZA!</a> &nbsp; &nbsp; &nbsp; Subtotal: $<%= totalCart %> <br>
+
+    <a href="/">ADD MORE PIZZA!</a> &nbsp; &nbsp; &nbsp; Subtotal: $<span name="subtotal"><%= totalCart %>
+    </span><br>
     Tax: $<%= (totalCart * .13).toFixed(2) %> <br>
     <% let finalprice = (totalCart * 1.13).toFixed(2); %> <br>
     Total: <strong>$<%= finalprice %></strong><br><br>
