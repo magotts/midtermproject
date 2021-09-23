@@ -15,7 +15,7 @@ const sendSms = (textMessage) => {
       body: textMessage,
     })
     .then((message) => {
-      console.log(message.sid);
+      console.log('message sent', 'message id:', message.sid);
       res.json(message);
     });
 };
