@@ -19,6 +19,7 @@ const checkoutRouter = (db) => {
       });
   };
 
+  // GET VALUES FROM CART
   router.get("/", (req, res) => {
     const user_id = req.session.user_id || "";
 
@@ -26,32 +27,49 @@ const checkoutRouter = (db) => {
       .then((user) => {
         let cart = req.session.cart;
         let session = req.session;
-        console.log("CART is",cart);
-        if (!cart) {
-          res.redirect('/');
-        }
-        console.log("CART items is",cart.items); //delete cart.items['1436']
 
-        console.log("Total price is",cart.totalPrice);
-        for (let list of Object.values(cart.items)) {
-          console.log("foods_id is:", list.item.id); //food_id
-          console.log("food name is:", list.item.title);
-          console.log("qty of food is:", list.qty);
+        if (!cart) {
+          return res.redirect('/');
         }
+
         const templateVars = { session, user, cart};
         res.render("checkout", templateVars);
 
       });
-
-
   });
 
-  // delete cart.items.this??
-  // router.delete('/', (req, res) => {
-  //   let cart = req.session.cart;
-  //   delete cart.items['this'];
+  // DELETE AN ITEM IN THE CART
+  router.post('/delete/:id', (req, res) => {
+    const user_id = req.session.user_id || "";
 
-  // });
+    findUserById(user_id)
+      .then((user) => {
+        let cart = req.session.cart;
+        let session = req.session;
+        const id = req.params.id;
+        delete cart.items[id];
+        req.session.cart = cart;
+        const templateVars = { session, user, cart};
+        res.render("checkout", templateVars);
+      });
+  });
+
+  // EDIT THE QUANTITY
+  router.post("/edit/:id", (req, res) => {
+    const user_id = req.session.user_id || "";
+    findUserById(user_id)
+      .then((user) => {
+        let cart = req.session.cart;
+        let session = req.session;
+        const id = req.params.id;
+        let newQty = req.body.editqty;
+        cart.items[id].qty = newQty;
+        req.session.cart = cart;
+        const templateVars = { session, user, cart};
+        res.render("checkout", templateVars);
+      });
+
+  });
 
   return router;
 

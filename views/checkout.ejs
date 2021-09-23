@@ -16,11 +16,10 @@
   </head>
   <%- include('partials/_header') %>
   <body>
-<h2>REVIEW YOUR ORDER</h2>
-
 
 <div class="box">
   <div class="order-summary">
+    <h2>REVIEW YOUR ORDER</h2>
     <table id="fooditems" class="table table-hover">
       <thead>
         <tr>
@@ -28,40 +27,40 @@
           <th scope="col">Price</th>
           <th scope="col">Quantity</th>
           <th scope="col">Total</th>
-          <th scope="col">Delete</th>
         </tr>
       </thead>
       <tbody>
         <% let final = 0; %>
         <% for (let foodList of Object.values(cart.items)){ %>
-
           <tr>
             <td name="foodlist"><span class="items"><%= foodList.item.title %></span></td>
             <td><span class="price"><%= foodList.item.price %></span></td>
-            <td><span class="qty"><%= foodList.qty %></span></td>
-            <td><span class="total"><%=  Number(foodList.item.price) * Number(foodList.qty) %></span></td>
-            <td><form method="delete"><button data-id="deleteid" id="deletebutton" value="Delete">Delete</button></form></td>
+            <td><form method="POST" action="/checkout/edit/<%= foodList.item.id %>"><input name="editqty" type="number" value="<%= foodList.qty %>" />
+              <td><span class="total"><%=  Number(foodList.item.price) * Number(foodList.qty) %></span></td>
+              <td><button class="btn btn-primary btn-sm updatebutton">Update</button></form></td>
+            <!-- <td><span class="qty"><%= foodList.qty %></span></td> -->
 
+            <td><form method="POST" action="/checkout/delete/<%= foodList.item.id %>"><button id="deletebutton" value="Delete" class="btn-sm btn-danger">Remove</button></form></td>
         </tr>
-<% } %>
-
-
+        <% } %>
       </tbody>
     </table>
-    Subtotal: $<%= cart.totalPrice %> <br>
-    Tax: $<%= Math.round(cart.totalPrice * .13) %> <br>
-    <% let finalprice = Math.round(cart.totalPrice * 1.13); %> <br>
-    Total: <strong>$<%= Math.round(finalprice) %></strong><br>
+    <div class="totalplaceorder">
+    <% let totalCart = 0 %>
+    <% for (let tots of Object.values(cart.items) ) { %>
+    <% totalCart += (tots.item.price * tots.qty);  %>
+    <% } %>
 
-
-
-    <form method="POST" action="/order"><button type="submit" id="order-id" class="btn btn-primary">Place order</button>
-    </form>
-
-
+    <a href="/">ADD MORE PIZZA!</a> &nbsp; &nbsp; &nbsp; Subtotal: $<%= totalCart %> <br>
+    Tax: $<%= (totalCart * .13).toFixed(2) %> <br>
+    <% let finalprice = (totalCart * 1.13).toFixed(2); %> <br>
+    Total: <strong>$<%= finalprice %></strong><br><br>
+    <form method="POST" action="/order"><button type="submit" id="order-id" class="btn btn-primary">Place Order</button></form>
+    </div>
   </div>
+
   <div class="order-summary">
-    <strong>Restaurant Pick-up Info</strong><br>
+    <strong>Restaurant Pick-Up Info</strong><br>
     Pizza Azzip<br>
     123 Fourth Dr.<br>
     Scarborough, ON<br>
