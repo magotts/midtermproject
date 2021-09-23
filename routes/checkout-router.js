@@ -31,20 +31,11 @@ const checkoutRouter = (db) => {
         if (!cart) {
           return res.redirect('/');
         }
-        console.log("CART is", cart);
-        console.log("CART item  is",cart.items); //delete cart.items['1436']
-        console.log("Total price is",cart.totalPrice);
-        for (let list of Object.values(cart.items)) {
-          console.log("foods_id is:", list.item.id); //food_id
-          console.log("food name is:", list.item.title);
-          console.log("qty of food is:", list.qty);
-        }
+
         const templateVars = { session, user, cart};
         res.render("checkout", templateVars);
 
       });
-
-
   });
 
   // DELETE AN ITEM IN THE CART
@@ -63,18 +54,15 @@ const checkoutRouter = (db) => {
       });
   });
 
-
   // EDIT THE QUANTITY
   router.post("/edit/:id", (req, res) => {
     const user_id = req.session.user_id || "";
-
     findUserById(user_id)
       .then((user) => {
         let cart = req.session.cart;
         let session = req.session;
         const id = req.params.id;
-        let newQty = req.body.editqty; // not working
-        console.log("edited qty is:", newQty);
+        let newQty = req.body.editqty;
         cart.items[id].qty = newQty;
         req.session.cart = cart;
         const templateVars = { session, user, cart};
@@ -82,7 +70,6 @@ const checkoutRouter = (db) => {
       });
 
   });
-
 
   return router;
 
