@@ -39,50 +39,51 @@ $(document).ready(function () {
    ---  Server adds pizza to cart session and responds with the total quantity and total price of the current session
   */
 
-  $("#order-button").on("click", function (e) {
+   const modalElement = function (pizza){
 
+    return `<div class="modal-body">
+    <table class="table table-image">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">Product</th>
+          <th scope="col">Price</th>
+          <th scope="col">Qty</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="w-25">
+            <img src="${
+              pizza.item.image_url
+            }" class="img-fluid img-thumbnail" alt="Sheep">
+          </td>
+          <td>${pizza.item.title}</td>
+          <td id="order-id">${pizza.item.price}</td>
+          <td class="qty"> ${pizza.qty}</td>
+          <td>$${pizza.item.price * pizza.qty}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>`
+
+
+   }
+
+  $("#order-button").on("click", function (e) {
     $.post(`/order/cart`).then((response) => {
       $("#order-modal").modal("show");
       // $('#order-id').html(response.cart)
 
       console.log(response.cartObj.items);
-
+      // $("#modalBody").html("");
       $.each(Object.values(response.cartObj.items), function (index, pizza) {
         e.stopPropagation();
         console.log(pizza.qty);
-            const title = pizza.item.title
-            $("#modalBody").html("");
-            $('#modalBody').html(`<div class="modal-body">
-            <table class="table table-image">
-              <thead>
-                <tr>
-                  <th scope="col"></th>
-                  <th scope="col">Product</th>
-                  <th scope="col">Price</th>
-                  <th scope="col">Qty</th>
-                  <th scope="col">Total</th>
-                  <th scope="col">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="w-25">
-                    <img src="${pizza.item.image_url}" class="img-fluid img-thumbnail" alt="Sheep">
-                  </td>
-                  <td>${title}</td>
-                  <td id="order-id">${pizza.item.price}</td>
-                  <td class="qty"> ${pizza.qty}</td>
-                  <td>$${pizza.item.price *  pizza.qty}</td>
-                  <td>
-                    <a href="#" class="btn btn-danger btn-sm">
-                      <i class="fa fa-times"></i>
-                    </a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-          </div>`)
+        const $modal = modalElement(pizza);
+        $("#modalBody").append($modal);
         console.log(pizza.item);
       });
 
