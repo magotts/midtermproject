@@ -1,0 +1,80 @@
+h2 {
+  text-align: center;
+  color: green;
+  padding-top: 10px;
+}
+
+.mainbox {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 25px;
+  border: 2px solid black;
+  width: 70%;
+  margin-left: 14em;
+  margin-right: 14em;
+  margin-top: 3em;
+  margin-bottom: 5em;
+  background: white;
+  opacity: 0.94;
+}
+
+.order-summary {
+  display: inline-block;
+  text-align: center;
+  padding: 15px;
+  margin: 25px;
+}
+
+.order-success {
+  background-color: white;
+  color: black;
+  padding-top: 4em;
+  padding-bottom: 4em;
+}
+
+.checkout-btn {
+  text-decoration: none;
+  margin: 0 1.2rem;
+  color: white;
+}
+
+#cartQuantity {
+  font-size: 15px;
+  background: #8a310e;
+  color: #fff;
+  padding: 0 5px;
+  vertical-align: top;
+  margin-left: -10px;
+}
+
+input {
+  text-align: center;
+  width: 4em;
+}
+
+.totalplaceorder {
+  text-align: end;
+  padding-right: 11em;
+}
+
+body {
+  background-image: url("https://as1.ftcdn.net/v2/jpg/04/08/51/78/1000_F_408517872_u7m4me8l83eenmUcsJ1ArSZymm5Unz4X.jpg");
+}
+/*# sourceMappingURL=checkout.css.map */
