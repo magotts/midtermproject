@@ -1,4 +1,3 @@
-// const sendSms = require('../../twilio');
 
 //document.ready
 $(() => {
@@ -26,7 +25,7 @@ $(() => {
             <td> ${order.order_status === "new" ? "<div class='admin-button-container' data-id=" + order.id + "><button class='btn-success accept-order' data-id=" + order.id + ">ACCEPT</button> <button class='btn-danger decline-order' data-id=" + order.id + ">DECLINE</button></div>" : ""}
 
              ${order.order_status === "accepted" ?
-            "<p>Order In Progress</p> <button class='btn btn-outline-info'>Complete Order</button>" : ""}</td>
+            "<p>Order In Progress</p> <button class='btn btn-sm btn-outline-info'>Complete Order</button>" : ""}</td>
 
 
             </tr>`
@@ -80,11 +79,8 @@ $(document).on('submit', '.preparation-time', function(event) {
     .then((response) => {
       //response is estimated_time
       const duration = (response.rows[0].order_estimation);
-      // return sendSms(response);
+      // return duration;
 
-      //pass response to the api function
-      //get the object that matches the order id of the clicked order on admins page
-      //enter the value from the text form into db under orders.estimated_time where id = orderId
     })
 
   });
@@ -95,18 +91,12 @@ $(document).on('submit', '.preparation-time', function(event) {
     event.preventDefault();
     const buttonId = event.target.dataset.id;
     $(`div[data-id=${buttonId}]`).replaceWith(`<p class="declined-message">Order Declined</p>`);
+
+    $.post('/admins/del/' + buttonId)
+    .then((response) => {
+      loadOrders();
+    })
   });
-
-  $("form .time").on('submit', (event) => {
-    event.preventDefault();
-
-    const $time = $this.serialize();
-
-    console.log($time);
-    // $.post("/admins", $time).then(() => { });
-  // send form data to API to be sent to client as SMS
-
-    });
 
 
     loadOrders();
