@@ -87,6 +87,7 @@
 .checkout-btn {
   text-decoration: none;
   margin: 0 1.2rem;
+  cursor: pointer;
 }
 
 // Alert
@@ -94,20 +95,20 @@
   z-index: 1000 !important;
 }
 
-
 // Cart modal
 
 .table-image {
-
   thead {
-    td, th {
+    td,
+    th {
       border: 0;
       color: #666;
       font-size: 0.8rem;
     }
   }
 
-  td, th {
+  td,
+  th {
     vertical-align: middle;
     text-align: center;
 
@@ -118,13 +119,12 @@
 }
 
 .price {
-  margin-left: 1rem;
+  margin: auto 1rem;
 }
 
 .modal-footer {
   padding-top: 0rem;
 }
-
 
 // Responsiveness
 

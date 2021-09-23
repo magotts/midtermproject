@@ -73,22 +73,21 @@ $(document).ready(function () {
   $("#order-button").on("click", function () {
     $.post(`/order/cart`).then((response) => {
       $("#order-modal").modal("show");
-      // $('#order-id').html(response.cart)
-
-      console.log(response.cartObj.items);
-      // $("#modalBody").html("");
+      console.log();
       $.each(Object.values(response.cartObj.items), function (index, pizza) {
         console.log(pizza.qty);
         const $modal = modalElement(pizza);
         $("#modalBody").append($modal);
-        console.log(pizza.item);
+
       });
+      $('.price').append(`$${response.cartObj.totalPrice}`)
     });
   });
 
   // Empties the modal when someone closes it
   $("#order-modal").on("hidden.bs.modal", function () {
     $("#modalBody").empty();
+    $('.price').empty();
   });
 
 
