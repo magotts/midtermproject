@@ -27,8 +27,9 @@ $(() => {
              ${order.order_status === "accepted" ?
             "<p>Order In Progress</p> <button class='btn btn-sm btn-outline-info complete-order' data-id=" + order.id + ">Complete Order</button>" : ""}
 
-            ${order.order_status === "declined" ? "<span class='badge badge-pill badge-danger'>Order Declined</span>" : "" } </td>
+            ${order.order_status === "declined" ? "<span class='badge badge-pill badge-danger'>Order Declined</span>" : "" }
 
+            ${order.order_status === "completed" ? "<span class='badge badge-pill badge-success'>Order Completed</span>" : "" } </td>
 
             </tr>`
 
@@ -104,7 +105,14 @@ $(document).on('submit', '.preparation-time', function(event) {
   $(document).on('click', '.complete-order', function(event) {
     event.preventDefault();
 
-    $(event.target).replaceWith(`<span class="badge badge-pill badge-success">Order Completed</span>`)
+    $(event.target).replaceWith(`<span class="badge badge-pill badge-success">Order Completed</span>`);
+
+    const buttonId = event.target.dataset.id;
+
+    $.post('/admins/complete/' + buttonId)
+    .then(() => {
+        loadOrders();
+    })
 
   });
 

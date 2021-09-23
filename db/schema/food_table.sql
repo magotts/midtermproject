@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS foods CASCADE;
 DROP TABLE IF EXISTS order_details CASCADE;
 DROP TYPE IF EXISTS ord_status CASCADE;
 
-CREATE TYPE ord_status AS ENUM ('new', 'accepted', 'declined');
+CREATE TYPE ord_status AS ENUM ('new', 'accepted', 'declined', 'completed');
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,

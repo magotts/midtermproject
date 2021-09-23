@@ -55,7 +55,15 @@ const adminRouter = (db) => {
     .then((response) => {
       res.json(response);
     })
-    })
+    });
+
+  router.post('/complete/:id', (req, res) => {
+    const orderId = req.params.id
+db.query(`UPDATE orders SET order_status = 'completed' WHERE id=${orderId} RETURNING order_status`)
+.then((response) => {
+  res.json(response);
+})
+  });
 
   return router;
 };
