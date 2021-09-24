@@ -97,12 +97,11 @@ $(document).ready(function () {
     const numberOfItems = parseInt($(this).siblings().find("input").val());
     $("input").val(0);
     const $cartBefore = $("#cartQuantity").html();
-    console.log("cartCount", $cartBefore);
     const pizza = JSON.parse($(this).val());
     $.post(`/pizza/${pizza.id}`, { pizza, numberOfItems })
       .then((response) => {
         $("#cartQuantity").empty().html(response.totalQty);
-        $("#cartPrice").html(`Running total is $${response.totalPrice}`);
+        // $("#cartPrice").html(`Running total is $${response.totalPrice}`);
         // check if there is an increment in the cart quantity and alert whether  item was added or not
         const $cartAfter = $("#cartQuantity").html();
         console.log("cartCount", $cartAfter);

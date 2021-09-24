@@ -61,7 +61,6 @@ const checkoutRouter = (db) => {
   // EDIT THE QUANTITY AND TOTAL
   router.post("/edit/:id", (req, res) => {
     const user_id = req.session.user_id || "";
-
     findUserById(user_id).then((user) => {
       let cart = req.session.cart;
       let session = req.session;
