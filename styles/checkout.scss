@@ -6,6 +6,12 @@ h2 {
   padding-top: 10px;
 }
 
+.navbar-brand{
+  color: $primary !important;
+  letter-spacing: 1.2px;
+  font-size: 1.3rem;
+}
+
 .mainbox {
   width: fit-content;
 }

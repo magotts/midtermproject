@@ -9,7 +9,9 @@ body {
 }
 
 .navbar-brand{
-  color: $primary;
+  color: $primary !important;
+  letter-spacing: 1.2px;
+  font-size: 1.3rem;
 }
 
 
