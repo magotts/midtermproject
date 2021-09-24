@@ -5,6 +5,11 @@
 
 body {
   background-color: $dark;
+  font-family: $font;
+}
+
+.navbar-brand{
+  color: $primary;
 }
 
 
