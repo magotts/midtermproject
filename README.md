@@ -29,7 +29,7 @@ The restuarant can then accept or decline the order order which would again trig
 
 https://github.com/magotts/midtermproject/blob/master/docs/home_page.png
 ![Home page](https://github.com/magotts/midtermproject/blob/master/docs/home_page.png)
-![Order Review](https://github.com/magotts/midtermproject/blob/master/docs/order_review.pgn)
+![Order Review](https://github.com/magotts/midtermproject/blob/master/docs/order_review.png)
 ![Admin Page](https://github.com/magotts/midtermproject/blob/master/docs/admin_page.png)
 ![App demo gif](https://github.com/magotts/midtermproject/blob/master/docs/demonstration.gif)
 
