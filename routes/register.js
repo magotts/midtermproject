@@ -13,7 +13,6 @@ const registerRouter = (db) => {
     let email = req.body.email;
     let password = req.body.password;
     const hashedPassword = bcrypt.hashSync(password, 10);
-    console.log(first_name, last_name, phone_number, email, hashedPassword);
 
 
     if (first_name === "" || last_name === "" || phone_number === "" ||email === "" || password === "") {
@@ -28,8 +27,6 @@ const registerRouter = (db) => {
       .query(queryString, values)
       .then((result) => {
         req.session.user_id =  result.rows[0].id;
-        console.log("cookie is", req.session.user_id);
-        console.log("result row is", result.rows[0]);
         res.redirect("/");
       })
       //.then(res.redirect("/"))

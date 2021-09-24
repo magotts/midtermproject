@@ -11,7 +11,6 @@ module.exports = (db) => {
 
     if (userId && cartObj) {
       let totalPrice = cartObj.totalPrice;
-      console.log("tots:", totalPrice);
 
       const queryText = {
         text: `INSERT INTO orders (user_id, total_cost) VALUES ($1, $2) RETURNING id`,
@@ -46,7 +45,7 @@ module.exports = (db) => {
             );
 
             req.session.cart = null;
-            console.log("here is order Id", orderId);
+
             // sending this to menu js to be handled through ajax
             res.status(200).redirect("ordersuccess");
           })
