@@ -74,7 +74,7 @@ main {
           align-items: center;
 }
 
-h5 {
+h4 {
   margin-bottom: 2em;
   margin-top: 2em;
   color: #F8F8F8;
@@ -82,6 +82,7 @@ h5 {
 
 body {
   background-color: #212529;
+  font-family: "Montserrat", sans-serif;
 }
 
 .accept-order, .decline-order {

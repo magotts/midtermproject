@@ -72,14 +72,16 @@ color: red;
     align-items: center;
   }
 
-  h5 {
+  h4 {
     margin-bottom: 2em;
     margin-top: 2em;
     color: #F8F8F8;
+
   }
 
   body {
     background-color: #212529;
+    font-family: $font;
   }
 
   .accept-order, .decline-order {
