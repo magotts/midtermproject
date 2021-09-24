@@ -31,12 +31,10 @@ module.exports = (db) => {
         // Gather the current users orders
         currentUsersOrders(db, user.id)
           .then((orders) => {
-            // console.log('current users orders:', orders);
             // Find the status and all the details about the foods
             getUsersOrderStatus(db, user.id)
               .then((ordersInfo) => {
                 if (user.id === userId) {
-                   console.log("userOrderDetails", ordersInfo);
                   const templateVars = {
                     user: user,
                     session,

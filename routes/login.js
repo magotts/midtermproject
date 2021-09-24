@@ -36,7 +36,6 @@ module.exports = (db) => {
     // start authentication process
     authenticateUser(email, password, db)
       .then((user) => {
-        // console.log("Here is User:", user);
 
         // If authenticateUser returns null
         if (!user || req.session.user_id) {

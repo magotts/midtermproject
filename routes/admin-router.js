@@ -79,9 +79,6 @@ const adminRouter = (db) => {
     const session = req.session;
     const { estimatedTime } = req.body;
     const id = req.params.id;
-    console.log("hello world");
-    console.log("est time", estimatedTime, "id", id);
-    // add query to update db with time value
 
     findUserById(db, userId).then((user) => {
       if (user.admin) {
@@ -89,7 +86,7 @@ const adminRouter = (db) => {
           (response) => {
             // res.json(response.rows);
             const record = response.rows[0];
-            console.log("record:", record);
+            // update db with estimated time value
             db.query(
               `UPDATE orders
       SET order_estimation = ${estimatedTime},
@@ -97,19 +94,13 @@ const adminRouter = (db) => {
       WHERE id=${id}
       RETURNING order_estimation`
             ).then((response) => {
-              console.log(
-                "THIS IS THE RESPONSE:",
-                response.rows[0].order_estimation
-              );
+
               const orderIsReady = response.rows[0].order_estimation;
               sendSms(`Your order will be ready in ${orderIsReady}minutes.`);
               res.json(response);
             });
-            // .then((data) => {
-            //   res.json(data);
-            // })
-          }
-        );
+
+          });
       }
       // else render a 404 page
       else if (user && userId) {
@@ -142,7 +133,7 @@ const adminRouter = (db) => {
           `UPDATE orders SET order_status = 'declined' WHERE id=${orderId} RETURNING order_status`
         ).then((response) => {
 
-          db.query(`SELECT first_name from users JOIN orders ON orders.user_id = users.id WHERE orders.id = ${orderId} `).then((result) =>{
+          db.query(`SELECT first_name from users JOIN orders ON orders.user_id = users.id WHERE orders.id = ${orderId} `).then((result) => {
             const name = result.rows[0].first_name;
 
             sendSms(`We're sorry ${name}, unfortunately the restaurant has declined your order.`);

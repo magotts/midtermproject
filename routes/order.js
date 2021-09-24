@@ -8,8 +8,7 @@ module.exports = (db) => {
   router.post("/", (req, res) => {
     const userId = req.session.user_id || "";
     const cartObj = req.session.cart;
-    // console.log(cartObj.items);
-    // console.log(cartObj.totalPrice);
+
     if (userId && cartObj) {
       let totalPrice = cartObj.totalPrice;
       console.log("tots:", totalPrice);
@@ -36,12 +35,11 @@ module.exports = (db) => {
             }
             // removes that last comma
             text = text.substring(0, text.length - 1);
-            console.log(text);
 
             db.query(text).catch((err) => {
               res.status(500).json({ error: err.message });
             });
-            console.log(user);
+
 
             sms(
               `Hi ${user.first_name}! Good news, your order was successfully placed. Your order number is: ${orderId.id}`

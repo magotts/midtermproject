@@ -73,9 +73,8 @@ $(document).ready(function () {
   $("#order-button").on("click", function () {
     $.post(`/order/cart`).then((response) => {
       $("#order-modal").modal("show");
-      console.log();
       $.each(Object.values(response.cartObj.items), function (index, pizza) {
-        console.log(pizza.qty);
+
         const $modal = modalElement(pizza);
         $("#modalBody").append($modal);
 

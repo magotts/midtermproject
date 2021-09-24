@@ -1,13 +1,11 @@
 
 //document.ready
 $(() => {
-  console.log('doc ready');
 
   const loadOrders = () => {
     //load data
     $.get('/admins/orders')
     .done((response) => {
-      console.log(response)
       renderOrders(response)
     })
     .fail((error) => {
@@ -63,26 +61,18 @@ $(() => {
     <input type='text' name='estimatedTime' placeholder='minutes'><button class="btn-sm btn-outline-success submit-time">Submit</button></form>`);
   });
 
-
-// $(document).on('submit', '.preparation-time', function (event) {
-//   event.preventDefault();
-//   console.log('submit form 2');
-// })
-
 $(document).on('submit', '.preparation-time', function(event) {
-    console.log('form submission');
     event.preventDefault();
     //const data = this.serialize(); // This will cause issues because this is not defined the same with arrow
     const data = $(this).serialize();
     const orderId = ($(this).data('id'));
-    console.log('data:', data, 'orderid', orderId);
 
     $.post('/admins/orders/' + orderId, data)
     .then((response) => {
-      console.log('new con log', response)
+
       //response is estimated_time
       const duration = (response.rows[0].order_estimation);
-      // return duration;
+      //render page again
       loadOrders();
     })
 
