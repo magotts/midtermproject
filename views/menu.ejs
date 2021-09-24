@@ -43,18 +43,23 @@
     <!--Section: Block Content-->
     <div class="bg-image p-5 text-white shadow-1-strong rounded mb-5 text-white">
       <% if (user) { %>
-      <h1 class="mb-3 h2">Welcome <%= user.first_name %>!</h1>
+      <h1 class="mb-3 h2">Welcome <span class="customer"><%= user.first_name %>!</span></h1>
 <% } %>
-      <h4>Craving some delicious pizza? You've come to the right place. Please log in to start your order.</h4>
+      <h4> <span class="jumbo"> Craving some delicious pizza?</span> <span class="jumbo2" >You've come to the right place. Scroll to start your order now.</span>
+        <% if (!user) { %>
+       <span>Please log in to start your order.</span>
+       <% } %>
+      </h4>
 
     </div>
     <section class="menu" style="margin-bottom: 5em;">
 
       <div class="container">
+        <h3 class="customer2" >Our Specials</h3>
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <% for(let pizza of data) { %>
             <div class="col">
-              <div class="card h-100">
+              <div class="card h-100 pizza-card">
                 <img src="<%= pizza.image_url%>" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="col-auto card-title">
