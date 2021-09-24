@@ -7,7 +7,7 @@ A **pizza ordering app**.
 
 This pizza ordering app lets a user (customer) choose a certain amount of pizza item, add to cart, review, update as they like and place order. The customer would then receive a text message confirming that the order was received by the restaurant.
 
-The restuarant can then accept or decline the order order which would again trigger an **sms** that's sent to the customer.
+The restaurant can then accept or decline the order which would again trigger an **sms** that's sent to the customer.
 
 ## The Team
 
