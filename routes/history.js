@@ -36,7 +36,7 @@ module.exports = (db) => {
             getUsersOrderStatus(db, user.id)
               .then((ordersInfo) => {
                 if (user.id === userId) {
-                  // console.log("userOrderDetails", ordersInfo);
+                   console.log("userOrderDetails", ordersInfo);
                   const templateVars = {
                     user: user,
                     session,
