@@ -2,7 +2,7 @@
 
 .bg-image {
   width: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)),
     url("../images/bg.jpg");
   background-attachment: fixed;
   background-position: center top;
@@ -15,13 +15,59 @@
   }
 }
 
+// Navbar
+.navbar {
+  height: 5rem;
+}
+
+// User name in homepage styling
+
+.customer {
+  color: $primary;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.customer2 {
+  text-align: center;
+  color: $primary;
+  font-weight: bold;
+  font-style: italic;
+  text-decoration: underline;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
 // CARD "ADD TO CART" AREA STYLING
 .card-img-top {
   border-radius: 50%;
 }
 
+.pizza-card {
+  transition: all 0.2s ease-out;
+  &:hover {
+    box-shadow: 9px 9px 17px $hover;
+  }
+}
+
+.jumbo {
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: bold;
+  color: $primary;
+  margin: 2rem 0;
+}
+
+.jumbo2 {
+  display: block;
+  margin: 2rem 0;
+  font-size: 2rem;
+}
+
 .card {
   border-radius: 5%;
+  border-color: $primary;
+  border-width: 2px;
 }
 
 .input-cart {
@@ -50,7 +96,7 @@
 #cartQuantity {
   font-size: 15px;
   background: $hover;
-  color: #fff;
+  color: $white;
   padding: 0 5px;
   vertical-align: top;
   margin-left: -10px;
@@ -61,13 +107,17 @@
 }
 
 .btn-primary {
-  background-color: $primary;
-  transition: all 0.2s ease-out;
+  background-color: $primary !important;
+  color: $white;
+  transition: all 0.3s ease-out;
   cursor: pointer;
+  border-color: $dark !important;
 
   &:hover {
-    transform: translateY(-2px);
-    background-color: $hover;
+    background-color: $dark !important;
+    color: $white !important;
+    border-color: $primary !important;
+    transform: translateY(-1px);
     box-shadow: 0 0 7px $dark;
   }
 }
@@ -82,6 +132,15 @@
 // Cart icon
 .fa-shopping-cart {
   color: $white;
+  transition: all 0.3s ease-out;
+  &:hover {
+    color: $primary;
+  }
+}
+
+// user icon
+.u-icon{
+  color: $primary;
 }
 
 .checkout-btn {
@@ -95,6 +154,12 @@
   z-index: 1000 !important;
 }
 
+// user email
+#dropdownMenuButton2{
+  font-weight: bold;
+  transition: all 0.3s ease-out;
+}
+
 // Cart modal
 
 .table-image {
@@ -102,7 +167,7 @@
     td,
     th {
       border: 0;
-      color: #666;
+      color: $dark;
       font-size: 0.8rem;
     }
   }
@@ -125,6 +190,12 @@
 .modal-footer {
   padding-top: 0rem;
 }
+.modal-title {
+  color: $primary;
+  font-weight: bold;
+}
+
+
 
 // Responsiveness
 

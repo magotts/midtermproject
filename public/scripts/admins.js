@@ -111,6 +111,6 @@ $(document).on('submit', '.preparation-time', function(event) {
 
     setInterval(() => {
       loadOrders()
-    }, 5000);
+    }, 7000);
 
 });

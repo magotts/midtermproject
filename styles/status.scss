@@ -107,3 +107,9 @@ p.text-justify {
         font-size: 0.75rem
     }
 }
+
+@media(max-width: 1000px) {
+  .navi{
+    flex-direction: row;
+  }
+}

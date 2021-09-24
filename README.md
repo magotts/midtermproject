@@ -44,7 +44,11 @@ The restaurant can then accept or decline the order which would again trigger an
 - NodeJs
 - Express
 - Psql
-- HTML and CSS
+- HTML 
+- Sass
+- CSS
+- jQuery
+- Ajax
 
 ### Dependencies
 
