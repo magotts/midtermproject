@@ -46,7 +46,7 @@
 .pizza-card {
   transition: all 0.2s ease-out;
   &:hover {
-    box-shadow: 9px 9px 17px $primary;
+    box-shadow: 9px 9px 17px $hover;
   }
 }
 
@@ -114,8 +114,8 @@
   border-color: $dark !important;
 
   &:hover {
-    background-color: $white !important;
-    color: $primary !important;
+    background-color: $dark !important;
+    color: $white !important;
     border-color: $primary !important;
     transform: translateY(-1px);
     box-shadow: 0 0 7px $dark;
