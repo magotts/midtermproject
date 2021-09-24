@@ -15,6 +15,11 @@
   }
 }
 
+// Navbar
+.navbar {
+  height: 5rem;
+}
+
 // User name in homepage styling
 
 .customer {
@@ -32,7 +37,6 @@
   font-size: 2rem;
   margin-bottom: 2rem;
 }
-
 
 // CARD "ADD TO CART" AREA STYLING
 .card-img-top {
@@ -92,7 +96,7 @@
 #cartQuantity {
   font-size: 15px;
   background: $hover;
-  color: #fff;
+  color: $white;
   padding: 0 5px;
   vertical-align: top;
   margin-left: -10px;
@@ -128,6 +132,15 @@
 // Cart icon
 .fa-shopping-cart {
   color: $white;
+  transition: all 0.3s ease-out;
+  &:hover {
+    color: $primary;
+  }
+}
+
+// user icon
+.u-icon{
+  color: $primary;
 }
 
 .checkout-btn {
@@ -141,6 +154,12 @@
   z-index: 1000 !important;
 }
 
+// user email
+#dropdownMenuButton2{
+  font-weight: bold;
+  transition: all 0.3s ease-out;
+}
+
 // Cart modal
 
 .table-image {
@@ -148,7 +167,7 @@
     td,
     th {
       border: 0;
-      color: #666;
+      color: $dark;
       font-size: 0.8rem;
     }
   }
@@ -171,6 +190,12 @@
 .modal-footer {
   padding-top: 0rem;
 }
+.modal-title {
+  color: $primary;
+  font-weight: bold;
+}
+
+
 
 // Responsiveness
 
